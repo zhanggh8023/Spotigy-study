@@ -1,0 +1,71 @@
+Spotify的结构
+1、弱化汇报，反向支撑
+cto>Tribe lead>Chapter lead&Agile coaches>Engineer
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+cpo>VP Product>Product Owner
+<<<<<<<<<<<<<<<<<<<<<
+主要实现小队自主，以上人员提供服务，反向支撑
+
+2、Agile Coach 
+硬实力
+Agile-lean Practitioner 硬技能，实践能力
+软实力
+Teaching 教人能力，复杂概念的简单讲
+Mentoring 带人
+Coaching 辅导团队、组织、企业
+Facilitating 引导目标达成
+发展方向
+Teaching 技术线，带团队带人，教人
+Business 业务线，行业业务精通
+Transformational 管理线，组织转型
+
+3、Spotify实践
+.1一对一辅导
+.2Team offsite 团队会议（咖啡、度假村设置目标进行解决）
+.3Po book club 读书俱乐部
+.4TDD /XP workshop 极限编程、技术
+
+4、团队路线图（部落）
+.1业务线
+.2Bootcamp 两周准备，技术介绍
+.3Unconference 持续交付讨论 闪电演讲
+
+
+5、团队引导
+健康度检查
+.1通过红黄绿灯，指示每个小队每个指标维度的当前情况，小队沟通情况
+.2小队自己进行标识，自我检查
+.3各个leader、酋长通过标识，及时沟通帮助，提供支撑
+.4服务性、支撑型、
+.5与绩效无关、与奖金无关
+
+依赖度检查
+.1小队与小队的依赖度
+.2通过依赖度，及时调整小队整合
+
+系统学习
+.1案例分析
+.2文化分享
+.3模拟体验
+
+
+问答环节
+1、Chapter和职能部门有什么区别？
+没有很大区别，关注方向有些区别，方式方法。chapter偏团队，职能偏管理。
+需要写信与Spotify的转型团队沟通。
+
+2、员工的归属感怎么建立？归属Squad还是Chapter？
+Squad，Chapter更多的是职能性辅导。
+
+3、一个Squad没有项目经理，是负责移除工作障碍？
+没有，团队自行讨论。提出方案，提出支撑内容。
+
+4、为什么说Spotify是规模化敏捷？
+分解，解耦，团队型，目标型。
+
+5、运维人员是否在Squad？
+没有，目前没有，需要了解一下。
+
+6、它和LeSS有啥本质的区别？
+在Spotify里面有PO，Less没有，其他的没有。
+
