@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="Facebook Engineering - Facebook Engineering Blog">
+	<meta property="fb:app_id" content="1425766027653270" />
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://engineering.fb.com/xmlrpc.php">
+	<title>Jupiter: A high-performance job-matching service - Facebook Engineering</title>
+
+<!-- This site is optimized with the Yoast SEO Premium plugin v11.1.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Jupiter: A high-performance job-matching service - Facebook Engineering" />
+<meta property="og:description" content="[...]Read More..." />
+<meta property="og:url" content="https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/" />
+<meta property="og:site_name" content="Facebook Engineering" />
+<meta property="article:tag" content="Backend" />
+<meta property="article:tag" content="C++" />
+<meta property="article:tag" content="Infra" />
+<meta property="article:tag" content="Tooling" />
+<meta property="article:section" content="Developer Tools" />
+<meta property="article:published_time" content="2017-05-24T08:59:59+00:00" />
+<meta property="article:modified_time" content="2018-06-26T17:58:53+00:00" />
+<meta property="og:updated_time" content="2018-06-26T17:58:53+00:00" />
+<meta property="og:image" content="https://engineering.fb.com/wp-content/uploads/2017/05/gilzgaglxdssm44baaaaaadxuo4kbj0jaaab.jpg?resize=1024,614" />
+<meta property="og:image:secure_url" content="https://engineering.fb.com/wp-content/uploads/2017/05/gilzgaglxdssm44baaaaaadxuo4kbj0jaaab.jpg?resize=1024,614" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="614" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="[...]Read More..." />
+<meta name="twitter:title" content="Jupiter: A high-performance job-matching service - Facebook Engineering" />
+<meta name="twitter:image" content="https://engineering.fb.com/wp-content/uploads/2017/05/gilzgaglxdssm44baaaaaadxuo4kbj0jaaab.jpg" />
+<script type='application/ld+json' class='yoast-schema-graph yoast-schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://engineering.fb.com/#organization","name":"Facebook","url":"https://engineering.fb.com/","sameAs":[],"logo":{"@type":"ImageObject","@id":"https://engineering.fb.com/#logo","url":"https://engineering.fb.com/wp-content/uploads/2019/08/facebook-logo-2019.png","width":512,"height":512,"caption":"Facebook"},"image":{"@id":"https://engineering.fb.com/#logo"}},{"@type":"WebSite","@id":"https://engineering.fb.com/#website","url":"https://engineering.fb.com/","name":"Facebook Engineering","publisher":{"@id":"https://engineering.fb.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://engineering.fb.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/#webpage","url":"https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/","inLanguage":"en-US","name":"Jupiter: A high-performance job-matching service - Facebook Engineering","isPartOf":{"@id":"https://engineering.fb.com/#website"},"image":{"@type":"ImageObject","@id":"https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/#primaryimage","url":"https://engineering.fb.com/wp-content/uploads/2017/05/gilzgaglxdssm44baaaaaadxuo4kbj0jaaab.jpg","width":2085,"height":1250},"primaryImageOfPage":{"@id":"https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/#primaryimage"},"datePublished":"2017-05-24T08:59:59+00:00","dateModified":"2018-06-26T17:58:53+00:00"},{"@type":"Article","@id":"https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/#article","isPartOf":{"@id":"https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/#webpage"},"author":{"@id":"https://engineering.fb.com/author/import_user/#author","name":"Import User"},"publisher":{"@id":"https://engineering.fb.com/#organization"},"headline":"Jupiter: A high-performance job-matching service","datePublished":"2017-05-24T08:59:59+00:00","dateModified":"2018-06-26T17:58:53+00:00","commentCount":0,"mainEntityOfPage":"https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/#webpage","image":{"@id":"https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/#primaryimage"},"keywords":"Backend,C++,Infra,Tooling","articleSection":"Developer Tools"},{"@type":"Person","@id":"https://engineering.fb.com/author/import_user/#author","name":"Import User","image":{"@type":"ImageObject","@id":"https://engineering.fb.com/#personlogo","url":"https://secure.gravatar.com/avatar/72ac2cae61c6f5d875057e36b0cbc2e8?s=96&d=mm&r=g","caption":"Import User"},"sameAs":[]}]}</script>
+<!-- / Yoast SEO Premium plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//use.typekit.net' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Feed" href="https://engineering.fb.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Comments Feed" href="https://engineering.fb.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Jupiter: A high-performance job-matching service Comments Feed" href="https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/engineering.fb.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.3"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0' href='https://engineering.fb.com/_static/??-eJxlzUsSwiAMgOELSdMufC0cz0IhttjwGBLG6e2FjnWhSz6S/PBKysQgGAR8UYnK5ALDEyVps4CPthAyZCQtaFWKLD+vzjAfoJ5xwVCxdbgCWMcCI0WzKHJj1nkFlpWw8y58N/bwXq002ZSbc3PNjDXX7EN/qzKjb8loUT3Gyn7Lm9mRVdvnXrz723A8Xa790J+Pb46/W7M=' type='text/css' media='all' />
+<link rel='stylesheet' id='typekit-freight-sans-css'  href='https://use.typekit.net/mnd1swv.css?ver=0.5.1.3' type='text/css' media='all' />
+<link rel='stylesheet' id='all-css-2' href='https://engineering.fb.com/wp-content/mu-plugins/jetpack/css/jetpack.css?m=1565295905g' type='text/css' media='all' />
+<script type='text/javascript' src='https://engineering.fb.com/_static/??/wp-content/plugins/wp-gdpr-consent/assets/gdprconsent.js,/wp-content/themes/understrap/js/popper.min.js?m=1563679259j'></script>
+<link rel='https://api.w.org/' href='https://engineering.fb.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://engineering.fb.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://engineering.fb.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.2.3" />
+<link rel='shortlink' href='https://wp.me/pa0Lhq-1Vp' />
+<link rel="alternate" type="application/json+oembed" href="https://engineering.fb.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fengineering.fb.com%2Fdeveloper-tools%2Fjupiter-a-high-performance-job-matching-service%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://engineering.fb.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fengineering.fb.com%2Fdeveloper-tools%2Fjupiter-a-high-performance-job-matching-service%2F&#038;format=xml" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'/>
+<style type='text/css'>img#wpstats{display:none}</style>
+	<link rel="shortcut icon" href="https://engineering.fb.com/wp-content/themes/code-fb-com/favicon.ico" />
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-44373548-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-44373548-1');
+	</script>
+	<!-- Facebook Pixel Code -->
+	<script>
+	!function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f.fbq)f.fbq=n;n.push=n;n.loaded=!0;n.version='2..0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window,document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '1277352439085100');
+	fbq('track', 'PageView');
+	</script>
+
+	<noscript>
+	<img height="1" width="1" src="https://www.facebook.com/tr?id=1277352439085100&ev=PageView &noscript=1"/>
+	</noscript>
+	<!-- End Facebook Pixel Code -->
+</head>
+
+<body class="post-template-default single single-post postid-7403 single-format-standard group-blog">
+
+<div class="hfeed site" id="page">
+
+<!-- ******************* The Navbar Area ******************* -->
+<div class="wrapper-fluid wrapper-navbar" id="wrapper-navbar">
+	<a class="skip-link screen-reader-text sr-only" href="#content">
+	Skip to content	</a>
+
+	<nav class="navbar navbar-expand-std">
+
+			<div class="nav-container">
+	
+
+				<!-- Your site title as branding in the menu -->
+
+	<div class="nav-top-row">
+	
+		<h1 class="navbar-brand mb-0">
+			<a rel="home" href="https://engineering.fb.com/" title="Facebook Engineering">
+				<img class="navbar-brand-logo" src="https://engineering.fb.com/wp-content/themes/code-fb-com/img/fb-engineering-logo.svg" class="navbar-brand-logo" alt="Facebook Engineering">
+			</a>
+		</h1>
+
+	<!-- end custom logo -->
+
+				<input type="text" name="search" class="form-control-lg navbar-search" autocomplete="off">
+
+				<button class="navbar-toggler navbar-searchbar-toggler"
+						type="button"
+						data-toggle="collapse"
+						data-target="#searchbarDropdown"
+						aria-controls="searchbarDropdown"
+						aria-expanded="false"
+						aria-label="Toggle navigation">
+					<img src="https://engineering.fb.com/wp-content/themes/code-fb-com/img/search-icon.png"  class="navbar-mobile-search-icon"/>
+				</button>
+
+				<!-- desktop language menu (mobile language menu is implemented via jQuery)-->
+				<div class="notranslate nice-select navbar-language form-control">
+				</div>
+
+				<button class="navbar-toggler collapsed navbar-menu-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+
+			<!-- The WordPress Menu goes here -->
+	<div id="navbarNavDropdown" class="collapse navbar-collapse"><ul id="main-menu" class="navbar-nav"><li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-60 dropdown"><a title="Open Source" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Open Source <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-12330" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-12330"><a title="Open Source" href="https://engineering.fb.com/category/open-source/" class="nav-link">Open Source</a></li>
+	<li id="menu-item-12331" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-12331"><a title="Facebook Open Source" href="https://opensource.facebook.com" class="nav-link">Facebook Open Source</a></li>
+</ul>
+</li>
+<li id="menu-item-2686" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2686 dropdown"><a title="Platforms" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Platforms <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-65" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-65"><a title="Android" href="https://engineering.fb.com/category/android/" class="nav-link">Android</a></li>
+	<li id="menu-item-66" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-66"><a title="iOS" href="https://engineering.fb.com/category/ios/" class="nav-link">iOS</a></li>
+	<li id="menu-item-67" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-67"><a title="Web" href="https://engineering.fb.com/category/web/" class="nav-link">Web</a></li>
+</ul>
+</li>
+<li id="menu-item-2682" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2682 dropdown"><a title="Infrastructure Systems" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Infrastructure Systems <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-218" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-218"><a title="Core Data" href="https://engineering.fb.com/category/core-data/" class="nav-link">Core Data</a></li>
+	<li id="menu-item-219" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-219"><a title="Data Infrastructure" href="https://engineering.fb.com/category/data-infrastructure/" class="nav-link">Data Infrastructure</a></li>
+	<li id="menu-item-220" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent nav-item menu-item-220"><a title="Developer Tools" href="https://engineering.fb.com/category/developer-tools/" class="nav-link">Developer Tools</a></li>
+	<li id="menu-item-226" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-226"><a title="Production Engineering" href="https://engineering.fb.com/category/production-engineering/" class="nav-link">Production Engineering</a></li>
+	<li id="menu-item-227" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-227"><a title="Security" href="https://engineering.fb.com/category/security/" class="nav-link">Security</a></li>
+</ul>
+</li>
+<li id="menu-item-2683" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2683 dropdown"><a title="Physical Infrastructure" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Physical Infrastructure <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-215" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-215"><a title="Connectivity" href="https://engineering.fb.com/category/connectivity/" class="nav-link">Connectivity</a></li>
+	<li id="menu-item-216" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-216"><a title="Data Center Engineering" href="https://engineering.fb.com/category/data-center-engineering/" class="nav-link">Data Center Engineering</a></li>
+	<li id="menu-item-217" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-217"><a title="Networking &amp; Traffic" href="https://engineering.fb.com/category/networking-traffic/" class="nav-link">Networking &#038; Traffic</a></li>
+</ul>
+</li>
+<li id="menu-item-2684" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2684 dropdown"><a title="Video Engineering &amp; AR/VR" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Video Engineering &#038; AR/VR <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-225" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-225"><a title="Video Engineering" href="https://engineering.fb.com/category/video-engineering/" class="nav-link">Video Engineering</a></li>
+	<li id="menu-item-223" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-223"><a title="Virtual Reality" href="https://engineering.fb.com/category/virtual-reality/" class="nav-link">Virtual Reality</a></li>
+	<li id="menu-item-13388" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-13388"><a title="Research Publications" href="https://research.fb.com/publications/?cat=11" class="nav-link">Research Publications</a></li>
+</ul>
+</li>
+<li id="menu-item-2685" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2685 dropdown"><a title="Artificial Intelligence" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Artificial Intelligence <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-222" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-222"><a title="ML Applications" href="https://engineering.fb.com/category/ml-applications/" class="nav-link">ML Applications</a></li>
+	<li id="menu-item-221" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-221"><a title="AI Research" href="https://engineering.fb.com/category/ai-research/" class="nav-link">AI Research</a></li>
+	<li id="menu-item-13387" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-13387"><a title="Research Publications" href="https://research.fb.com/publications/?cat=13" class="nav-link">Research Publications</a></li>
+</ul>
+</li>
+<li id="menu-item-228" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-228"><a title="Watch Videos" href="/videos" class="nav-link">Watch Videos</a></li>
+</ul></div>		</div><!-- .container -->
+	
+		<div class="search-container collapse" id="searchbarDropdown">
+			<div class="searchbar-search">
+				<div class="searchbar-container">
+
+					<div class="navbar-mobile-search-margin"></div>
+					<input type="text" name="search" placeholder="Search" class="form-control-lg navbar-mobile-search" autofocus autocomplete="off">
+					<button class="searchbar-clear">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</nav><!-- .site-navigation -->
+
+</div><!-- .wrapper-navbar end -->
+
+<div class="wrapper" id="single-wrapper">
+
+	<div class="single-container row" id="content" tabindex="-1">
+
+		<!-- Do the left sidebar check. -->
+		
+
+
+<div class="content-area" id="primary">
+		<main class="site-main" id="main">
+
+			
+				
+<article class="post-7403 post type-post status-publish format-standard has-post-thumbnail hentry category-developer-tools tag-backend tag-cpp tag-infra tag-tooling" id="post-7403">
+
+	<header class="entry-header">
+		<div class="entry-meta">
+
+			POSTED ON
+
+	<span class="posted-on"><time class="entry-date published" datetime="MAY 24, 2017">MAY 24, 2017</time></span>
+			TO
+
+			<!-- category -->
+	<span class="cat-links"><a href="https://engineering.fb.com/category/developer-tools/" rel="category tag">Developer Tools</a></span>
+	<h1 class="entry-title"><div>Jupiter: A high-performance job-matching service</div></h1>		</div><!-- .entry-meta -->
+
+	</header><!-- .entry-header -->
+
+			<div id="post-feat-image-container">
+			<img src="https://engineering.fb.com/wp-content/uploads/2017/05/gilzgaglxdssm44baaaaaadxuo4kbj0jaaab.jpg" class="wp-post-image">		</div>
+		
+	<div class="entry-authors-social">
+	  <div class="entry-authors">
+		<div class="entry-author">Sergey Doroshenko</div><div class="entry-author">Adriana Libório</div>		</div>
+		<div class="entry-social">
+			<div class="entry-facebook">
+				<a href="#" onclick="return fbShare()">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+				</a>
+			</div>
+			<div class="entry-twitter">
+				<a href="#" onclick="return twitterSharePopup('https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/')">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+				</a>
+			</div>
+		</div>
+	</div>
+
+			<div class="entry-paragraph">
+								</div>
+	
+	<div class="entry-content">
+
+	<p>As part of the engineering workflow — writing, editing, testing, and shipping code — we rely on backend services and machines to do a variety of jobs, such as building new packages, installing dependencies, and running tests. At Facebook’s scale, the number and variety of jobs engineers need to execute every day can build up and become a bottleneck in the system. Our goal is to minimize the amount of time engineers spend waiting on machines so that they can get feedback quickly and spend more time on productive tasks.</p>
+<p>Every job runs in an isolated environment called a worker, and these are distributed across different hosts in different data centers. Workers are pre-configured to run certain types of jobs – for example, an Android job coming in will go to a worker that has the right codebase and dependencies already updated.</p>
+<p>This type of distributed system needs some mechanism to deliver jobs to the appropriate workers reliably and efficiently. Common solutions range from distributed queues to scheduler/dispatcher systems that track the current state of the world and attempt to optimally distribute the workload. However, these solutions come with trade-offs; e.g., schedulers tend to become a scalability bottleneck. In this post we describe Jupiter, a service we built with one aspect in mind: capabilities matching.</p>
+<p>For workers, a capability is essentially a declaration of a worker&#8217;s traits or what it can do. Examples are hardware resources like RAM size, which data center the worker is in, the current load factor of the machine, models of smartphones the worker is connected to, repositories or data artifacts pre-loaded onto the machine, and so on. Each worker has multiple capabilities, and each capability is a set of one or more values (e.g. RAM size is a singular value, but there could be several pre-loaded source code repositories.) Similarly, each job encodes the capabilities it requires. For instance, a resource-intensive build needs a beefy machine; a CI job for a diff in a certain repository is better picked up by a worker with the source code already pre-loaded; a job that needs a given kernel version can be executed only by a worker running on that kernel; a group of distributed builds is best executed in a certain cluster.</p>
+<p><img class="aligncenter size-full" data-src="https://engineering.fb.com/wp-content/uploads/2017/12/GIpqGgHyzee7NxUBAAAAAADKCWwAbj0JAAAB.jpg" width="736" height="414" /></p>
+<p>The task of matching multidimensional capabilities in the presence of a constant stream of updates and concurrent requests is a fascinating engineering problem. Jupiter is a service that excels at efficiently responding to requests for work from a pool of workers and keeping track of currently available jobs in a system where both workers and jobs can have multidimensional capability constraints. Jupiter guarantees atomic job acquisition — a job will be given to only one worker even if multiple requests are in flight, and once a worker acknowledges receipt of the job, it cannot be given to anyone else.</p>
+<p>Like many other Facebook backend services, Jupiter is written in C++ and accessible via Thrift. It is horizontally scalable — it can be sharded easily, where each of the shards makes independent decisions about its slice of the job set, and there is no single leader node responsible for everything. Jupiter respects the order in which jobs are enqueued. Ordering policies within a shard can be as simple as first-in, first-out, but other concepts like job priorities are supported as well. Performance-wise, it&#8217;s able to handle hundreds of thousands of requests per second per shard.</p>
+<p>Workers send requests to Jupiter advertising all the capabilities they have, and Jupiter finds the best match by consulting its internal data structures. On production workloads, the latency of work acquisition requests is on the order of tens of microseconds. Upon receipt of a job, the worker either acknowledges or rejects it by sending an appropriate request back to Jupiter. In the case of a rejection, the job is placed into a staging area for a period specified in the request; it can&#8217;t be given to another worker during this time. Different flavors of the acknowledgment APIs are available. For example, a worker can send a lease request to Jupiter indicating that it&#8217;s started processing the job but intends to acknowledge it only upon successful completion. At a high level, all Jupiter clients follow the pattern of acquiring a job, acknowledging it, working on it, and returning to the start of the cycle.</p>
+<p><img class="aligncenter size-full" data-src="https://engineering.fb.com/wp-content/uploads/2017/05/GKxqGgF-C69nZN8AAAAAAADzZYQDbj0JAAAB.jpg" width="736" height="414" /></p>
+<p>Because Jupiter possesses the knowledge of all jobs in the queue, it can make high-level scheduling decisions like allowing a job to be given to workers only after certain other prerequisite jobs have completed. For many use cases, the main benefit of Jupiter is simply the ability to efficiently consume jobs by a pool of (heterogeneous) workers, along with the reliability and atomicity that it provides. At Facebook, Jupiter supports different customers like One World, our resource management system, and our continuous integration system, Sandcastle. API boundaries between data and matching modules are clean, so integrating with new systems is very easy.</p>
+<p>It&#8217;s important to mention what Jupiter explicitly is not. It&#8217;s not a data persistence layer. If job data needs to be recorded, the producer side is responsible for that, and Jupiter constantly fetches delta updates from the persistence layer and keeps an up-to-date view of the world. The rationale here is twofold. First, we believe services should specialize in a few things instead of being responsible for everything. Second, by decoupling job storage and job matching, we ensure that Jupiter is not a single point of failure of the whole system: If Jupiter goes down, job producers are still able to enqueue jobs, and once Jupiter is back up, all of the enqueued jobs are delivered to workers intact. Jupiter abstracts away all stateful operations behind a data provider interface, and implementations are free to use any storage engine of their choosing — be it a relational database, a distributed filesystem or, in cases where persistency is not required, Jupiter&#8217;s own in-memory storage.</p>
+<p>Jupiter also does not possess global knowledge about the state of the workers (e.g., which workers are busy at the moment or who is capable of processing a given job) and does not make any centralized decisions about what jobs should be sent where. Instead, jobs are distributed efficiently because workers request only the kinds of jobs they specialize at; jobs themselves encode what traits a potential worker needs to have; and Jupiter acts as an efficient arbiter that gives available jobs to workers best suited to handle them.</p>
+<p>In summary, Jupiter is an efficient job-matching service well suited for producer/consumer types of distributed systems. Its features are made possible by keeping the global jobs state in a dedicated service, and its versatile capabilities can be used by other systems. We hope our experience and findings will benefit the broader engineering community.</p>
+
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>
+	
+	</div><!-- .entry-content -->
+
+
+</article><!-- #post-## -->
+
+<footer class="entry-footer">
+
+	<div>TAGS: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/backend/" rel="tag">Backend</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/cpp/" rel="tag">C++</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/infra/" rel="tag">Infra</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/tooling/" rel="tag">Tooling</a></div>
+</footer><!-- .entry-footer -->
+
+<iframe src="https://www.facebook.com/plugins/like.php?href=https://engineering.fb.com/developer-tools/jupiter-a-high-performance-job-matching-service/&width=450&layout=standard&action=like&size=small&show_faces=false&share=true&height=35&appId=250208035192" width="450" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+
+					
+	 <!-- include the carousel nav here. -->
+
+		
+				
+<div class="comments-area" id="comments">
+
+	
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/developer-tools/jupiter-a-high-performance-job-matching-service/#respond" style="display:none;">Cancel reply</a></small></h3><p class="must-log-in">You must be <a href="https://engineering.fb.com/wp-login.php?redirect_to=https%3A%2F%2Fengineering.fb.com%2Fdeveloper-tools%2Fjupiter-a-high-performance-job-matching-service%2F">logged in</a> to post a comment.</p>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+			
+		</main><!-- #main -->
+
+	</div><!-- #primary -->
+
+		<!-- Do the right sidebar check. -->
+	
+
+
+  
+<div class="col-md-4 widget-area" id="right-sidebar" role="complementary">
+	<aside id="fb_related_post_widget-4" class="widget widget_fb_related_post_widget"><h3 class="widget-title">Related Posts</h3><hr>
+            <div class="aside-related-projects"><div class="article-grid-redesign">
+              <article class="post-7438 post type-post status-publish has-post-thumbnail hentry" id="post-7438">
+								<a href="https://engineering.fb.com/android/2017-year-in-review-software-across-the-stack/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2017/12/gptuzwfqb41f01ggaaaaaacdvc1gbj0jaaab.jpg?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2017/12/gptuzwfqb41f01ggaaaaaacdvc1gbj0jaaab.jpg?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2017/12/gptuzwfqb41f01ggaaaaaacdvc1gbj0jaaab.jpg?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="Dec 14, 2017">Dec 14, 2017</time></span>
+										<h4 class="entry-title">2017 Year in review: Software across the stack</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div><div class="article-grid-redesign">
+              <article class="post-13091 post type-post status-publish has-post-thumbnail hentry" id="post-13091">
+								<a href="https://engineering.fb.com/data-center-engineering/tupperware/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2019/06/SystemsHero.jpg?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2019/06/SystemsHero.jpg?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2019/06/SystemsHero.jpg?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="Jun 06, 2019">Jun 06, 2019</time></span>
+										<h4 class="entry-title">Efficient, reliable cluster management at scale with Tupperware</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div><div class="article-grid-redesign">
+              <article class="post-8339 post type-post status-publish has-post-thumbnail hentry" id="post-8339">
+								<a href="https://engineering.fb.com/networking-traffic/scaling-the-facebook-backbone-through-zero-touch-provisioning/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2018/05/data-center-shot.jpg?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2018/05/data-center-shot.jpg?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2018/05/data-center-shot.jpg?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="May 21, 2018">May 21, 2018</time></span>
+										<h4 class="entry-title">Scaling the Facebook backbone through Zero Touch Provisioning</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div></div></aside><aside id="wpb_widget-3" class="widget widget_wpb_widget"><h3 class="widget-title">Related Positions</h3><hr><ul class="available-positions-list"><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pkm2UAA>
+                      		<div class="job-description">
+                      			Software Engineer, Mobile
+                      		</div>
+                      		<div class="job-location">
+                      			TEL AVIV, ISRAEL
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001ppakUAA>
+                      		<div class="job-description">
+                      			Manager, Software Engineering - FAIAR
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001ps82UAA>
+                      		<div class="job-description">
+                      			Manager, Software Engineering - Core App
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001q7gVUAQ>
+                      		<div class="job-description">
+                      			Engineering Manager - Spark
+                      		</div>
+                      		<div class="job-location">
+                      			LONDON, UNITED KINGDOM
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K000007Bxl4UAC>
+                      		<div class="job-description">
+                      			WhatsApp Integrity, Software Engineer 
+                      		</div>
+                      		<div class="job-location">
+                      			LONDON, UNITED KINGDOM
+                      		</div>
+                          </a>
+                      	</li></ul>
+		<a href="https://www.facebook.com/careers/">
+			<button class="btn available-positions-btn">
+				See All Jobs
+			</button>
+		</a></aside>
+</div><!-- #secondary -->
+
+
+
+	<!-- <php get_template_part('content-single-side-bar'); ?> -->
+
+	<!-- Do the right sidebar check. -->
+	
+</div><!-- Container end -->
+
+</div><!-- Wrapper end -->
+
+
+
+	<!-- ******************* The Footer Full-width Widget Area ******************* -->
+
+	<div class="wrapper wrapper-community">
+
+
+		<div class="community" tabindex="-1">
+
+			<h3 class="community-title">Join Our Engineering Community</h3>
+
+			<div class="row">
+				<!-- community section is generated through WordPress widget -->
+				<div id="wpb_widget-2" class="footer-widget widget_wpb_widget widget-count-3 col-md-4"><h3 class="widget-title">Available Positions</h3><hr><ul class="available-positions-list"><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pkm2UAA>
+                      		<div class="job-description">
+                      			Software Engineer, Mobile
+                      		</div>
+                      		<div class="job-location">
+                      			TEL AVIV, ISRAEL
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001ppakUAA>
+                      		<div class="job-description">
+                      			Manager, Software Engineering - FAIAR
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001ps82UAA>
+                      		<div class="job-description">
+                      			Manager, Software Engineering - Core App
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001q7gVUAQ>
+                      		<div class="job-description">
+                      			Engineering Manager - Spark
+                      		</div>
+                      		<div class="job-location">
+                      			LONDON, UNITED KINGDOM
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K000007Bxl4UAC>
+                      		<div class="job-description">
+                      			WhatsApp Integrity, Software Engineer 
+                      		</div>
+                      		<div class="job-location">
+                      			LONDON, UNITED KINGDOM
+                      		</div>
+                          </a>
+                      	</li></ul>
+		<a href="https://www.facebook.com/careers/">
+			<button class="btn available-positions-btn">
+				See All Jobs
+			</button>
+		</a></div><!-- .footer-widget --><div id="custom_html-2" class="widget_text footer-widget widget_custom_html widget-count-3 col-md-4"><h3 class="widget-title">Stay Connected</h3><div class="textwidget custom-html-widget"><ul class="stay-connected-lists">
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/facebook-engineering.png"  alt="footer-fb-engineering">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Engineering	
+			</div>
+			<a href="https://www.facebook.com/Engineering/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/fbopensource.png" alt="footer-fbopensource">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				@fbOpenSource
+			</div>
+			<a onclick='return twitterFollow("fbOpenSource")'>
+			<button class="btn stay-connected-btn">
+				Follow
+				</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left facebook-research" src="/wp-content/themes/code-fb-com/img/facebook-research.png" alt="footer-research">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Research
+			</div>
+			<a href="https://research.fb.com/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left facebook-developers" src="/wp-content/themes/code-fb-com/img/facebook-developers.png" alt="footer-developers">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Developers
+			</div>
+			<a href="https://developers.facebook.com/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/rss.png" alt="footer-rss">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				RSS
+			</div>
+			<a href="https://code.facebook.com/posts/rss/">
+			<button class="btn stay-connected-btn">
+				Subscribe
+			</button>
+			</a>
+		</div>
+	</li>
+</ul></div></div><!-- .footer-widget --><div id="custom_html-3" class="widget_text footer-widget widget_custom_html widget-count-3 col-md-4"><h3 class="widget-title">Open Source</h3><div class="textwidget custom-html-widget"><p class="opensource-desc">
+	Facebook believes in building community through open source technology. Explore our latest projects in Artificial Intelligence, Data Infrastructure, Development Tools, Front End, Languages, Platforms, Security, Virtual Reality, and more.
+</p>
+<ul class="opensource-cats">
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/android.png" alt="android">
+		<div class="opensource-cap">
+			ANDROID
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/ios.png" alt="ios">
+		<div class="opensource-cap">
+			iOS
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/web.png" alt="web">
+		<div class="opensource-cap">		
+			WEB
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/backend.png" alt="backend">
+		<div class="opensource-cap">
+			BACKEND
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/hardware.png" alt="hardware">
+		<div class="opensource-cap">
+			HARDWARE
+		</div>
+	</li>
+</ul>
+
+<button class="btn opensource-btn" onclick="window.location.href='https://opensource.fb.com/'">
+	Learn More
+</button>
+
+</div></div><!-- .footer-widget -->
+			</div>
+
+		</div>
+
+	</div><!-- #wrapper-footer-full -->
+
+
+<!-- <php get_sidebar( 'footerfull' ); ?> -->
+
+<div class="wrapper-footer" id="wrapper-footer">
+
+	<div class="footer">
+
+		<div class="row">
+
+			<div class="col-md-12">
+
+				<footer class="site-footer" id="colophon">
+
+					<div class="site-info row justify-content-between">
+
+						<div class="col-md-4 copyright-container">
+							<div class="copyright"> Facebook © 2019 </div>
+						</div>
+
+						<!-- static footer -->
+						<div class="col-md-5 footer-links-container">
+							<ul class="footer-links">
+		<li class="footer-link"><a href="https://www.facebook.com/facebook">About</a></li><li class="footer-link"><a href="https://www.facebook.com/careers">Careers</a></li><li class="footer-link"><a href="https://www.facebook.com/about/privacy">Privacy</a></li><li class="footer-link"><a href="https://www.facebook.com/help/cookies">Cookies</a></li><li class="footer-link"><a href="https://www.facebook.com/policies">Terms</a></li><li class="footer-link"><a href="https://www.facebook.com/help">Help</a></li>							</ul>
+						</div>
+
+					</div><!-- .site-info -->
+
+				</footer><!-- #colophon -->
+
+			</div><!--col end -->
+
+		</div><!-- row end -->
+
+	</div><!-- container end -->
+
+</div><!-- wrapper end -->
+
+</div><!-- #page we need this extra closing tag here -->
+
+  <div class="gdprconsent-container" id="GDPRConsentBar">
+    <div class="gdprconsent-wrapper">
+      <div class="gdprconsent-content">
+        <p>To help personalize content, tailor and measure ads, and provide a safer experience, we use cookies. By clicking or navigating the site, you agree to allow our collection of information on and off Facebook through cookies. Learn more, including about available controls: <a href="https://www.facebook.com/policies/cookies/">Cookies Policy</a></p>
+      </div>
+    </div>
+  </div>
+  	<div style="display:none">
+	</div>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201938'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var loadmore_params = {"restfulURL":"https:\/\/engineering.fb.com\/wp-json\/fb\/v1\/loadmore","searchText":"","posts":"{\"page\":0,\"name\":\"jupiter-a-high-performance-job-matching-service\",\"category_name\":\"developer-tools\",\"error\":\"\",\"m\":\"\",\"p\":0,\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"static\":\"\",\"pagename\":\"\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"year\":0,\"w\":0,\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":false,\"update_post_term_cache\":true,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":12,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"0"};
+var search_params = {"ajaxurl":"https:\/\/engineering.fb.com\/wp-admin\/admin-ajax.php","posts":"{\"page\":0,\"name\":\"jupiter-a-high-performance-job-matching-service\",\"category_name\":\"developer-tools\",\"error\":\"\",\"m\":\"\",\"p\":0,\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"static\":\"\",\"pagename\":\"\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"year\":0,\"w\":0,\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":false,\"update_post_term_cache\":true,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":12,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"0"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://engineering.fb.com/_static/??/wp-content/themes/code-fb-com/js/child-theme.min.js,/wp-includes/js/wp-embed.min.js?m=1567638704j'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201938.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.7.1',blog:'147945108',post:'7403',tz:'-7',srv:'engineering.fb.com'} ]);
+	_stq.push([ 'clickTrackerInit', '147945108', '7403' ]);
+</script>
+
+</body>
+
+</html>

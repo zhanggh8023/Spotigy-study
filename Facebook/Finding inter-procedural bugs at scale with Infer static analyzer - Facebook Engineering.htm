@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1130.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="Facebook Engineering - Facebook Engineering Blog">
+	<meta property="fb:app_id" content="1425766027653270" />
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://engineering.fb.com/xmlrpc.php">
+	<title>Finding inter-procedural bugs at scale with Infer static analyzer - Facebook Engineering</title>
+
+<!-- This site is optimized with the Yoast SEO Premium plugin v11.1.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Finding inter-procedural bugs at scale with Infer static analyzer - Facebook Engineering" />
+<meta property="og:description" content="[...]Read More..." />
+<meta property="og:url" content="https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/" />
+<meta property="og:site_name" content="Facebook Engineering" />
+<meta property="article:tag" content="Backend" />
+<meta property="article:tag" content="C++" />
+<meta property="article:tag" content="Java" />
+<meta property="article:tag" content="Open Source" />
+<meta property="article:tag" content="Testing" />
+<meta property="article:tag" content="Tooling" />
+<meta property="article:section" content="Android" />
+<meta property="article:published_time" content="2017-09-06T17:41:34+00:00" />
+<meta property="article:modified_time" content="2018-06-28T19:32:55+00:00" />
+<meta property="og:updated_time" content="2018-06-28T19:32:55+00:00" />
+<meta property="og:image" content="https://engineering.fb.com/wp-content/uploads/2017/09/Screen-Shot-2018-06-12-at-3.58.01-PM.png" />
+<meta property="og:image:secure_url" content="https://engineering.fb.com/wp-content/uploads/2017/09/Screen-Shot-2018-06-12-at-3.58.01-PM.png" />
+<meta property="og:image:width" content="1091" />
+<meta property="og:image:height" content="587" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="[...]Read More..." />
+<meta name="twitter:title" content="Finding inter-procedural bugs at scale with Infer static analyzer - Facebook Engineering" />
+<meta name="twitter:image" content="https://engineering.fb.com/wp-content/uploads/2017/09/Screen-Shot-2018-06-12-at-3.58.01-PM.png" />
+<script type='application/ld+json' class='yoast-schema-graph yoast-schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://engineering.fb.com/#organization","name":"Facebook","url":"https://engineering.fb.com/","sameAs":[],"logo":{"@type":"ImageObject","@id":"https://engineering.fb.com/#logo","url":"https://engineering.fb.com/wp-content/uploads/2019/08/facebook-logo-2019.png","width":512,"height":512,"caption":"Facebook"},"image":{"@id":"https://engineering.fb.com/#logo"}},{"@type":"WebSite","@id":"https://engineering.fb.com/#website","url":"https://engineering.fb.com/","name":"Facebook Engineering","publisher":{"@id":"https://engineering.fb.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://engineering.fb.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/#webpage","url":"https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/","inLanguage":"en-US","name":"Finding inter-procedural bugs at scale with Infer static analyzer - Facebook Engineering","isPartOf":{"@id":"https://engineering.fb.com/#website"},"image":{"@type":"ImageObject","@id":"https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/#primaryimage","url":"https://engineering.fb.com/wp-content/uploads/2017/09/Screen-Shot-2018-06-12-at-3.58.01-PM.png","width":1091,"height":587},"primaryImageOfPage":{"@id":"https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/#primaryimage"},"datePublished":"2017-09-06T17:41:34+00:00","dateModified":"2018-06-28T19:32:55+00:00"},{"@type":"Article","@id":"https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/#article","isPartOf":{"@id":"https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/#webpage"},"author":{"@id":"https://engineering.fb.com/author/import_user/#author","name":"Import User"},"publisher":{"@id":"https://engineering.fb.com/#organization"},"headline":"Finding inter-procedural bugs at scale with Infer static analyzer","datePublished":"2017-09-06T17:41:34+00:00","dateModified":"2018-06-28T19:32:55+00:00","commentCount":0,"mainEntityOfPage":"https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/#webpage","image":{"@id":"https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/#primaryimage"},"keywords":"Backend,C++,Java,Open Source,Testing,Tooling","articleSection":"Android,Developer Tools,iOS"},{"@type":"Person","@id":"https://engineering.fb.com/author/import_user/#author","name":"Import User","image":{"@type":"ImageObject","@id":"https://engineering.fb.com/#personlogo","url":"https://secure.gravatar.com/avatar/72ac2cae61c6f5d875057e36b0cbc2e8?s=96&d=mm&r=g","caption":"Import User"},"sameAs":[]}]}</script>
+<!-- / Yoast SEO Premium plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//use.typekit.net' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Feed" href="https://engineering.fb.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Comments Feed" href="https://engineering.fb.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Finding inter-procedural bugs at scale with Infer static analyzer Comments Feed" href="https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/engineering.fb.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.3"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0' href='https://engineering.fb.com/_static/??-eJxlzUsSwiAMgOELSdMufC0cz0IhttjwGBLG6e2FjnWhSz6S/PBKysQgGAR8UYnK5ALDEyVps4CPthAyZCQtaFWKLD+vzjAfoJ5xwVCxdbgCWMcCI0WzKHJj1nkFlpWw8y58N/bwXq002ZSbc3PNjDXX7EN/qzKjb8loUT3Gyn7Lm9mRVdvnXrz723A8Xa790J+Pb46/W7M=' type='text/css' media='all' />
+<link rel='stylesheet' id='typekit-freight-sans-css'  href='https://use.typekit.net/mnd1swv.css?ver=0.5.1.3' type='text/css' media='all' />
+<link rel='stylesheet' id='all-css-2' href='https://engineering.fb.com/wp-content/mu-plugins/jetpack/css/jetpack.css?m=1565295902g' type='text/css' media='all' />
+<script type='text/javascript' src='https://engineering.fb.com/_static/??/wp-content/plugins/wp-gdpr-consent/assets/gdprconsent.js,/wp-content/themes/understrap/js/popper.min.js?m=1557612570j'></script>
+<link rel='https://api.w.org/' href='https://engineering.fb.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://engineering.fb.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://engineering.fb.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.2.3" />
+<link rel='shortlink' href='https://wp.me/pa0Lhq-1VH' />
+<link rel="alternate" type="application/json+oembed" href="https://engineering.fb.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fengineering.fb.com%2Fandroid%2Ffinding-inter-procedural-bugs-at-scale-with-infer-static-analyzer%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://engineering.fb.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fengineering.fb.com%2Fandroid%2Ffinding-inter-procedural-bugs-at-scale-with-infer-static-analyzer%2F&#038;format=xml" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'/>
+<style type='text/css'>img#wpstats{display:none}</style>
+	<link rel="shortcut icon" href="https://engineering.fb.com/wp-content/themes/code-fb-com/favicon.ico" />
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-44373548-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-44373548-1');
+	</script>
+	<!-- Facebook Pixel Code -->
+	<script>
+	!function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f.fbq)f.fbq=n;n.push=n;n.loaded=!0;n.version='2..0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window,document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '1277352439085100');
+	fbq('track', 'PageView');
+	</script>
+
+	<noscript>
+	<img height="1" width="1" src="https://www.facebook.com/tr?id=1277352439085100&ev=PageView &noscript=1"/>
+	</noscript>
+	<!-- End Facebook Pixel Code -->
+</head>
+
+<body class="post-template-default single single-post postid-7421 single-format-standard group-blog">
+
+<div class="hfeed site" id="page">
+
+<!-- ******************* The Navbar Area ******************* -->
+<div class="wrapper-fluid wrapper-navbar" id="wrapper-navbar">
+	<a class="skip-link screen-reader-text sr-only" href="#content">
+	Skip to content	</a>
+
+	<nav class="navbar navbar-expand-std">
+
+			<div class="nav-container">
+	
+
+				<!-- Your site title as branding in the menu -->
+
+	<div class="nav-top-row">
+	
+		<h1 class="navbar-brand mb-0">
+			<a rel="home" href="https://engineering.fb.com/" title="Facebook Engineering">
+				<img class="navbar-brand-logo" src="https://engineering.fb.com/wp-content/themes/code-fb-com/img/fb-engineering-logo.svg" class="navbar-brand-logo" alt="Facebook Engineering">
+			</a>
+		</h1>
+
+	<!-- end custom logo -->
+
+				<input type="text" name="search" class="form-control-lg navbar-search" autocomplete="off">
+
+				<button class="navbar-toggler navbar-searchbar-toggler"
+						type="button"
+						data-toggle="collapse"
+						data-target="#searchbarDropdown"
+						aria-controls="searchbarDropdown"
+						aria-expanded="false"
+						aria-label="Toggle navigation">
+					<img src="https://engineering.fb.com/wp-content/themes/code-fb-com/img/search-icon.png"  class="navbar-mobile-search-icon"/>
+				</button>
+
+				<!-- desktop language menu (mobile language menu is implemented via jQuery)-->
+				<div class="notranslate nice-select navbar-language form-control">
+				</div>
+
+				<button class="navbar-toggler collapsed navbar-menu-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+
+			<!-- The WordPress Menu goes here -->
+	<div id="navbarNavDropdown" class="collapse navbar-collapse"><ul id="main-menu" class="navbar-nav"><li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-60 dropdown"><a title="Open Source" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Open Source <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-12330" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-12330"><a title="Open Source" href="https://engineering.fb.com/category/open-source/" class="nav-link">Open Source</a></li>
+	<li id="menu-item-12331" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-12331"><a title="Facebook Open Source" href="https://opensource.facebook.com" class="nav-link">Facebook Open Source</a></li>
+</ul>
+</li>
+<li id="menu-item-2686" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2686 dropdown"><a title="Platforms" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Platforms <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-65" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent nav-item menu-item-65"><a title="Android" href="https://engineering.fb.com/category/android/" class="nav-link">Android</a></li>
+	<li id="menu-item-66" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent nav-item menu-item-66"><a title="iOS" href="https://engineering.fb.com/category/ios/" class="nav-link">iOS</a></li>
+	<li id="menu-item-67" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-67"><a title="Web" href="https://engineering.fb.com/category/web/" class="nav-link">Web</a></li>
+</ul>
+</li>
+<li id="menu-item-2682" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2682 dropdown"><a title="Infrastructure Systems" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Infrastructure Systems <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-218" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-218"><a title="Core Data" href="https://engineering.fb.com/category/core-data/" class="nav-link">Core Data</a></li>
+	<li id="menu-item-219" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-219"><a title="Data Infrastructure" href="https://engineering.fb.com/category/data-infrastructure/" class="nav-link">Data Infrastructure</a></li>
+	<li id="menu-item-220" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent nav-item menu-item-220"><a title="Developer Tools" href="https://engineering.fb.com/category/developer-tools/" class="nav-link">Developer Tools</a></li>
+	<li id="menu-item-226" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-226"><a title="Production Engineering" href="https://engineering.fb.com/category/production-engineering/" class="nav-link">Production Engineering</a></li>
+	<li id="menu-item-227" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-227"><a title="Security" href="https://engineering.fb.com/category/security/" class="nav-link">Security</a></li>
+</ul>
+</li>
+<li id="menu-item-2683" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2683 dropdown"><a title="Physical Infrastructure" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Physical Infrastructure <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-215" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-215"><a title="Connectivity" href="https://engineering.fb.com/category/connectivity/" class="nav-link">Connectivity</a></li>
+	<li id="menu-item-216" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-216"><a title="Data Center Engineering" href="https://engineering.fb.com/category/data-center-engineering/" class="nav-link">Data Center Engineering</a></li>
+	<li id="menu-item-217" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-217"><a title="Networking &amp; Traffic" href="https://engineering.fb.com/category/networking-traffic/" class="nav-link">Networking &#038; Traffic</a></li>
+</ul>
+</li>
+<li id="menu-item-2684" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2684 dropdown"><a title="Video Engineering &amp; AR/VR" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Video Engineering &#038; AR/VR <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-225" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-225"><a title="Video Engineering" href="https://engineering.fb.com/category/video-engineering/" class="nav-link">Video Engineering</a></li>
+	<li id="menu-item-223" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-223"><a title="Virtual Reality" href="https://engineering.fb.com/category/virtual-reality/" class="nav-link">Virtual Reality</a></li>
+	<li id="menu-item-13388" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-13388"><a title="Research Publications" href="https://research.fb.com/publications/?cat=11" class="nav-link">Research Publications</a></li>
+</ul>
+</li>
+<li id="menu-item-2685" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2685 dropdown"><a title="Artificial Intelligence" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Artificial Intelligence <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-222" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-222"><a title="ML Applications" href="https://engineering.fb.com/category/ml-applications/" class="nav-link">ML Applications</a></li>
+	<li id="menu-item-221" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-221"><a title="AI Research" href="https://engineering.fb.com/category/ai-research/" class="nav-link">AI Research</a></li>
+	<li id="menu-item-13387" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-13387"><a title="Research Publications" href="https://research.fb.com/publications/?cat=13" class="nav-link">Research Publications</a></li>
+</ul>
+</li>
+<li id="menu-item-228" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-228"><a title="Watch Videos" href="/videos" class="nav-link">Watch Videos</a></li>
+</ul></div>		</div><!-- .container -->
+	
+		<div class="search-container collapse" id="searchbarDropdown">
+			<div class="searchbar-search">
+				<div class="searchbar-container">
+
+					<div class="navbar-mobile-search-margin"></div>
+					<input type="text" name="search" placeholder="Search" class="form-control-lg navbar-mobile-search" autofocus autocomplete="off">
+					<button class="searchbar-clear">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</nav><!-- .site-navigation -->
+
+</div><!-- .wrapper-navbar end -->
+
+<div class="wrapper" id="single-wrapper">
+
+	<div class="single-container row" id="content" tabindex="-1">
+
+		<!-- Do the left sidebar check. -->
+		
+
+
+<div class="content-area" id="primary">
+		<main class="site-main" id="main">
+
+			
+				
+<article class="post-7421 post type-post status-publish format-standard has-post-thumbnail hentry category-android category-developer-tools category-ios tag-backend tag-cpp tag-java tag-opensource tag-testing tag-tooling" id="post-7421">
+
+	<header class="entry-header">
+		<div class="entry-meta">
+
+			POSTED ON
+
+	<span class="posted-on"><time class="entry-date published" datetime="SEP 6, 2017">SEP 6, 2017</time></span>
+			TO
+
+			<!-- category -->
+	<span class="cat-links"><a href="https://engineering.fb.com/category/android/" rel="category tag">Android</a>, <a href="https://engineering.fb.com/category/developer-tools/" rel="category tag">Developer Tools</a>, <a href="https://engineering.fb.com/category/ios/" rel="category tag">iOS</a></span>
+	<h1 class="entry-title"><div>Finding inter-procedural bugs at scale with Infer static analyzer</div></h1>		</div><!-- .entry-meta -->
+
+	</header><!-- .entry-header -->
+
+			<div id="post-feat-image-container">
+			<img src="https://engineering.fb.com/wp-content/uploads/2017/09/Screen-Shot-2018-06-12-at-3.58.01-PM.png" class="wp-post-image">		</div>
+		
+	<div class="entry-authors-social">
+	  <div class="entry-authors">
+		<div class="entry-author">Sam Blackshear</div><div class="entry-author">Dino Distefano</div>		</div>
+		<div class="entry-social">
+			<div class="entry-facebook">
+				<a href="#" onclick="return fbShare()">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+				</a>
+			</div>
+			<div class="entry-twitter">
+				<a href="#" onclick="return twitterSharePopup('https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/')">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+				</a>
+			</div>
+		</div>
+	</div>
+
+			<div class="entry-paragraph">
+								</div>
+	
+	<div class="entry-content">
+
+	<p>The capabilities of static analyzers, which catch bugs before programs are run, are steadily improving. During our work on the <a href="http://www.fbinfer.com/">Infer static analyzer</a>, we often were asked about the differences between Infer and other open source analysis tools like <a href="http://findbugs.sourceforge.net/">Findbugs</a>, <a href="http://errorprone.info">Error-prone</a>, and <a href="https://clang-analyzer.llvm.org/">Clang Static Analyzer</a>. A main difference is inter-procedural bugs, or bugs that involve interactions between multiple procedures.</p>
+<p>We&#8217;ll take a look at two examples of inter-procedural bugs that Infer found in Java and C — one from the open source DuckDuckGo Android app, and the other from the OpenSSL C code. These bugs cannot be found by the tools mentioned above, which perform only intra-procedural analysis, or — in the case of Clang Static Analyzer — only intra-file analysis (possibly inter-procedural, but confined to the procedures in one translation unit, a file-with-includes).</p>
+<p>Inter-procedural bugs are significant, as they make up the majority of several types of bugs Infer has found. Facebook developers have fixed thousands of such bugs, which suggests that static analysis for finding them can have a large impact; we include some data on inter-procedural bug frequency from Infer’s deployment at Facebook. As we have found, inter-procedural analysis can be deployed to large and rapidly changing codebases that consist of millions of lines of code and undergo thousands of modifications per day.</p>
+<h2>DuckDuckGo</h2>
+<p>The code for the Android app of DuckDuckGo, a privacy-oriented internet search engine, is available on GitHub. A DuckDuckGo developer fixed the <a href="https://github.com/duckduckgo/android-search-and-stories/issues/207">following issue</a> on an earlier version of the app after Infer reported it:</p>
+<pre>
+<code class="language-clike">
+src/com/duckduckgo/mobile/android/activity/DuckDuckGo.java:867: error: NULL_DEREFERENCE
+object `feedObject` last assigned on line 866 could be null and is dereferenced by call to `feedItemSelected(...)` at line 867.
+    
+864.
+865. public void feedItemSelected(String feedId) {
+866. FeedObject feedObject = DDGApplication.getDB().selectFeedById(feedId);
+867. feedItemSelected(feedObject);
+</code>
+</pre>
+<p>Along with this report, Infer produced an inter-procedural error trace consisting of 18 steps, which advanced through the procedures <code>getDB()</code>, <code>selectFeedById(feedId)</code>, and <code>feedItemSelected(feedObject)</code>. There are two distinct <code>feedItemSelected()</code> methods, one that accepts a <code>FeedObject</code> as a parameter and the other a <code>String</code>. Here is the code accessed by the call <code>selectFeedById(feedId)</code> on line 866:</p>
+<pre>
+<code class="language-clike">
+src/com/duckduckgo/mobile/android/db/DdgDB.java:483: start of procedure selectFeedById(...)
+    
+482.
+483. public FeedObject selectFeedById(String id){
+484. FeedObject out = null;
+485. Cursor c = null;
+486. try {
+487.   c = this.db.query(FEED_TABLE, null, "_id=?", new String[]{id}, null, null, null);
+488.   if (c.moveToFirst()) {
+489.    out = getFeedObject(c);
+490.   }
+491.  } finally {
+492.      if(c!=null) {
+493.            c.close();
+494.      }
+495.  }
+496.  return out;
+497. }
+</code>
+</pre>
+<p>There is a possibility of <code>selectFeedById()</code> returning null, namely when the <code>Cursor c</code> returned by <code>db.query()</code> on line 487 is the empty cursor. The call to <code>c.moveToFirst()</code> at line 488 will then return <code>false</code>.</p>
+<p>When analyzing the original code in <code>feedItemSelected()</code> where the null issue is flagged, Infer needs to become aware that null is a possibility at line 866. The error is actually reported at line 867, which is another method call, in this case involving the following method:</p>
+<pre>
+<code class="language-clike">
+src/com/duckduckgo/mobile/android/activity/DuckDuckGo.java:842: start of procedure feedItemSelected(...)
+    
+841.
+842.  public void feedItemSelected(FeedObject feedObject) {
+843. // keep a reference, so that we can reuse details while saving
+844.    DDGControlVar.currentFeedObject = feedObject;
+845.    DDGControlVar.mDuckDuckGoContainer.sessionType = SESSIONTYPE.SESSION_FEED;
+846.
+847     String url = feedObject.getUrl();
+</code>
+</pre>
+<p>Here we see that <code>feedObject</code> is dereferenced at line 847. We therefore will have a null pointer dereference if <code>feedObject</code> is null.</p>
+<p>We have an inter-procedural bug where the source of null is in one method, the sink of null is in a second procedure, and the source and sink procedures are called from a third procedure. We need inter-procedural reasoning to find this issue, because purely intra-procedural tools will not find this error.</p>
+<p>Findbugs, Error-prone, and other tools could find this bug if annotations about nullability and non-nullability were added to the code. However, finding the bug in the bare code as it&#8217;s written requires inter-procedural reasoning.</p>
+<h3>Theory: Specs and summaries</h3>
+<p>Infer found this DuckDuckGo issue using a technique called compositional, summary-based analysis. Instead of re-evaluating a method each time it is encountered, Infer consults a summary or approximation of what the method might do. A compositional analyzer calculates summaries without looking at all the call sites of methods; Infer tries to compute as general a summary as possible in a single pass over a procedure.</p>
+<p>Infer represents its summaries as specifications in a program logic. In more detail, a specification is a pair (pre,post) of a precondition and a postcondition (familiar from <a href="https://en.wikipedia.org/wiki/Hoare_logic">Hoare logic</a> or its more modern incarnation, <a href="https://en.wikipedia.org/wiki/Separation_logic">separation logic</a>). A (pre,post) pair means that if the logical property pre holds before executing a procedure, post will hold afterward. Sometimes several posts will be used to represent the disjunction (the “or”) of posts. A summary is a collection of pre/post pairs, and one of the pre properties needs to be matched at a call site for reasoning to proceed.</p>
+<p>For the method <code>selectFeedById(String id)</code>, Infer calculates</p>
+<pre>
+<code class="language-clike">
+PRE: this.db |→ - (db is non-null and points to a valid object)
+    
+POST1: return == null (we are returning a null feed object)
+POST2: return |→ - (we are returning a valid, non-null feed object)
+</code>
+</pre>
+<p>That is, there is a single pre/post pair in the summary, where the post is the disjunction POST1 OR POST2. Symbolic execution in the original procedure, <code>feedItemSelected(String feedId)</code>, will then consider two cases for <code>feedObject</code> at line 866: the null and non-null cases according to the two postconditions. Then, for the next statement at line 867, we must consider the null argument for the call <code>feedItemSelected(feedObject)</code>. Again we deal with this by consulting a calculated pre/post spec for <code>feedItemSelected</code>. The summary has five pre/post specs, but all of them contain</p>
+<pre>
+<code class="language-clike">
+PRE: feedObject |→ - (feedObject is a valid, non-null object)
+</code>
+</pre>
+<p>Infer selects this as the precondition because we need <code>feedObject</code> to be non-null; otherwise, an error (a NullPointerException) will occur. Now, when symbolic execution attempts <code>feedItemSelected(feedObject)</code> but with <code>feedObject == null</code>, we are unable to satisfy the precondition. It is at this point that we fail in our attempt to construct a logical proof that there is no runtime error, and an error is reported.</p>
+<p>The important point is that the reasoning about the code</p>
+<pre>
+<code class="language-clike">
+864.
+865.  public void feedItemSelected(String feedId) {
+866. FeedObject feedObject = DDGApplication.getDB().selectFeedById(feedId);
+867. feedItemSelected(feedObject)
+</code>
+</pre>
+<p>could be done using just the summaries of the procedures it calls, without delving into their bodies (again). For Infer to operate at scale, this application of the principle of procedural abstraction is crucial, as is the ability for the summaries to be constructed independently of calling sites.</p>
+<p>There is additional nuance to Infer&#8217;s notion of summary, which is more detailed than the pre/post specs as mentioned above. In order for Infer to report <a href="http://www0.cs.ucl.ac.uk/staff/p.ohearn/InterproceduralBlog/DuckDuckGoErrorTrace.txt">a trace for the error</a>, it remembers trace information showing paths through the code in summaries in addition to the pre/post specs. And, the pre/post specs themselves are more complicated than those presented above, which are simplified manually for the purpose of illustration. You can find the detailed specs that Infer calculates for these procedures <a href="http://www0.cs.ucl.ac.uk/staff/p.ohearn/InterproceduralBlog/DuckDuckGoNPECodeAndSpecs.txt">here.</a></p>
+<h2>OpenSSL</h2>
+<p>We&#8217;ve shown how summary-based compositional program analysis can effectively find inter-procedural errors at scale in Java. It also applies to the C family of languages. For example, in 2014 <a href="https://rt.openssl.org/Ticket/Display.html?id=3403&amp;user=guest&amp;pass=guest">we submitted to GitHub</a> 15 null dereferences and memory leaks Infer found in OpenSSL, which one of the project&#8217;s core developers fixed. Some of the null dereferences were rather complex, which illustrates a point we want to make about the rate of false positives — errors that cannot occur in any run of a program.</p>
+<p>Here is one of the reports from Infer:</p>
+<pre>
+<code class="language-clike">
+apps/ca.c:2780: error: NULL_DEREFERENCE
+pointer `revtm` last assigned on line 2778 could be null and is dereferenced at line 2780, column 6
+2778. revtm = X509_gmtime_adj(NULL, 0);
+2779.
+2780.  i = revtm→length + 1;
+</code>
+</pre>
+<p>The issue is that the procedure <code>X509_gmtime_adj()</code> can return null in some circumstances. Overall, the error trace found by Infer has 61 steps. Furthermore, the source of null, the call to <code>X509_gmtime_adj</code>, has 36 steps in its subtrace before it returns null; the trace goes five procedures deep, and it eventually encounters a return of null at call-depth 4 in procedure <code>ASN1_TIME_adj()</code> from the file crypto/asn1/a_time.c.</p>
+<pre>
+<code class="language-clike">
+crypto/asn1/a_time.c:113:6: Condition is true
+111.
+112. ts=OPENSSL_gmtime(&amp;t,&amp;data);
+113. if (ts == NULL)
+114.   {
+115.      ASN1err(ASN1_F_ASN1_TIME_ADJ, ASN1_R_ERROR_GETTING_TIME);
+116.       return NULL;
+117. }
+</code>
+</pre>
+<p>Altogether, the trace goes through eight procedures and six distinct files. You can <a href="http://www0.cs.ucl.ac.uk/staff/p.ohearn/InterproceduralBlog/openssl_trace.txt">see the entire trace here</a>.</p>
+<p>The conditions under which <code>X509_gmtime_adj(NULL, 0)</code> returns null are somewhat complex, and Infer does not establish that they definitely can occur in a run of a program. Infer does not construct a trace that goes all the way back to main() every time it reports a potential error. Rather, in the process of trying to construct a logical proof showing conditions where bugs occur, Infer will sometimes report the difficulties it encountered in constructing such a proof.</p>
+<p>In this case, an OpenSSL developer fixed the issue. There were other places in the codebase where an Infer report was blocked because <code>OPENSSL_gmtime()</code> came with a null check, which confirmed further that the issue was one worth raising.</p>
+<p>We also ran the Clang Static Analyzer on OpenSSL. It has the capability to perform intra-file analysis, a subset of which could be inter-procedural, but not between files as far as we know. This example required inter-file analysis; indeed, when we ran CSA on OpenSSL-1.0h, it did not find the bug. It’s worth noting that CSA reports a different set of bugs than Infer did, so it makes sense to run both analyzers on C code — and similarly, to run Findbugs and Error-prone for Java analysis.</p>
+<p>An interesting question is whether this OpenSSL report is a false positive or a true bug. We were still unsure, even after a number of hours. This is not uncommon when working with static analysis at scale: For large code, sometimes neither the tool nor the human is sure whether a bug can occur. This is a reason that we assign less importance to the concept of the false positive rate after having deployed static analysis than we did when we were learning its principles. With large and changing codebases, this rate is, for all practical purposes, unmeasurable. A more knowable concept, which better speaks to the value an analysis brings to programmers, is the fix rate: the proportion of analyzer issues that are removed as a result of developers&#8217; code changes. We plan to write in more detail on this point in the future; <a href="https://www.youtube.com/watch?v=xc72SYVU2QY&amp;t=23m30s">this talk</a> has additional information.</p>
+<h3>Speed and incrementalism</h3>
+<p>To illustrate Infer&#8217;s performance on OpenSSL, a codebase consisting of over 300,000 lines of code and 700 files, we analyzed the code, changed it to fix the bug described above, and then re-analyzed it in an incremental fashion.</p>
+<pre>
+<code class="language-clike">
+$ # compile to infer's intermediate language
+$ time infer capture -- make
+[...]
+real 5m0.545s
+user 4m10.563s
+sys 1m3.104s
+    
+$ # analyze the entire OpenSSL project, using one CPU only
+$ time infer -j 1 analyze
+[...]
+real 22m20.320s
+user 20m24.831s
+sys 1m31.722s
+
+$ # fix the bug
+$ vi apps/ca.c
+[...]
+    
+$ # run infer incrementally, using one CPU only
+$ time infer -j 1 run -reactive -- make 
+[...]
+real 0m41.296s
+user 0m36.920s
+sys 0m2.379s
+</code>
+</pre>
+<p>Infer runs considerably faster on the code change than on the entire project. The reactive mode does the translation work of capture and analysis for only the changed file. The code fix in <code>apps/ca.c</code> as given by OpenSSL developers involves inserting a simple null check.</p>
+<pre>
+<code class="language-clike">
+2778 revtm = X509_gmtime_adj(NULL, 0);
+2779
+2780 if (!revtm)
+2781 return NULL;
+2782
+2783 i = revtm→length + 1;
+</code>
+</pre>
+<p>This faster incremental analysis is helpful for <a href="https://research.fb.com/publications/moving-fast-with-software-verification/">Infer&#8217;s deployment model at Facebook</a>, where it is integrated with the code review system; even a linear time analysis would be too slow if it had to operate on the whole program when presented with a code change.</p>
+<h2>Frequency of inter-procedural fixes</h2>
+<p>People sometimes ask, rightly, whether inter-procedural analysis would catch many bugs local analyses do not, and whether we even need inter-procedural analysis. After all, the local tools go after some of the same categories of bugs that we talk about with Infer (for example, null dereferences).</p>
+<p>We looked at 100 recent Infer reports that Facebook developers had fixed, in several bug categories. Because inter-file bugs are necessarily classified as inter-procedural, note that the inter-procedural bugs are those in the two rightmost columns in the table below.</p>
+<p>Intra-procedural means the bug took place within the scope of a single function. Intra-file but inter-procedural means that the bug trace goes through more than one procedure or function, touching several procedures but with the supporting trace and reasoning confined to a single file. Inter-file is an inter-procedural bug that spans more than one file.</p>
+<figure style="width: 736px" class="wp-caption aligncenter"><img data-src="https://engineering.fb.com/wp-content/uploads/2017/09/GNKjQQEHp86za2kAAAAAAAC2Awl6bj0JAAAB.jpg" alt="" width="736" height="385" /><figcaption class="wp-caption-text">100 recent fixes in several bug categories</figcaption></figure>
+<p>We find that the majority of null dereferences fixed in Java are inter-procedural. In Objective-C, a larger proportion is intra-procedural. Part of the reason for the difference is that we have implemented a number of intra-procedural checks that search for ObjC-specific code patterns, based on input from Facebook developers. Inter-procedural bugs still count for a non-negligible proportion.</p>
+<p>Thread Safety is a check for data races between methods in Java classes annotated with @ThreadSafe. Again, the majority are inter-procedural and even inter-file. The data races are on accesses to fields or calls to containers that often are in different classes than the one annotated @ThreadSafe. For the purposes of this table, when we have a read/write race involving two procedures but where the accesses are within the procedures themselves, we consider it an intra-procedural race. Discovering it requires two pieces of intra-procedural reasoning, about two procedures.</p>
+<p>Allocates Memory is a check for whether an allocation is reachable from a procedure annotated with @NoAllocation.</p>
+<p>Thread Safety and Allocates Memory are based on specialized inter-procedural analysis, distinct from the <a href="http://dl.acm.org/citation.cfm?id=2049700">Separation Logic-based one</a> referred to in the example bugs from DuckDuckGo and OpenSSL. Thread Safety uses a concept of summary that records access and locking information rather than more general memory properties; it is tailored to the specific problem of reporting races. Allocates Memory is part of an analyzer for annotation reachability whose summaries store trace information. These two analyzers use a framework, Infer.AI, for writing compositional static analyzers in Infer.</p>
+<p>Bad Pointer Comparison is a lint check for Objective-C that identifies when a boxed primitive type such as <code>NSNumber *</code> is coerced to a Boolean in a comparison. It is written in AL, our <a href="https://engineering.fb.com/posts/277643589367408/al-a-new-declarative-language-for-detecting-bugs-with-infer/">AST language</a>. We include it for balance, as an example of a useful check that does not require inter-procedural reasoning.</p>
+<h2>Conclusion</h2>
+<p>As static analyzers become increasingly common, they often are used to perform simple procedure-local (intra-procedural) checks. Such analyses, exemplified by the open source tools Findbugs, Error-prone, Clang Static Analyzer, and Android Lint, are deployed relatively broadly and provide positive value. For instance, a <a href="https://research.google.com/pubs/pub43322.html">Google static analysis team reports</a> that it uses internal intra-procedural checks widely but avoids inter-procedural analysis at scale. Facebook deploys several linting and intra-procedural analysis solutions internally, and Infer includes its own in the <a href="https://engineering.fb.com/posts/277643589367408/al-a-new-declarative-language-for-detecting-bugs-with-infer/">AL Language</a>.</p>
+<p>By comparison, inter-procedural analysis appears to be deployed less often, but there have been other key developments. Two significant deployments were Microsoft&#8217;s <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2004/05/ieee_sw_righting_software.pdf">Prefix and Static Driver Verifier</a>; Static Driver Verifier has limited scaling capabilities, whereas Prefix works in a bottom-up fashion, like an earlier version of Infer, and is scaled to large codebases. The <a href="http://popl.mpi-sws.org/2014/andy.pdf">proprietary static analyzer from Coverity </a>also supports inter-procedural analysis, using some techniques that are similar to those of Infer and others that are different. These efforts provide context, but we haven&#8217;t made a detailed comparison. An <a href="http://techdigest.jhuapl.edu/TD/td3202/32_02-Pendergrass-Lee.pdf">independent study of several advanced static-analysis tools found that they catch different sets of bugs</a>, which suggests that there is no single best analyzer that supersedes all others.</p>
+<p>Because Infer is compositional, meaning that summaries of procedures are generated independently of calling contexts, it can scale to large codebases and work incrementally on frequent code modifications. Generally speaking, we feel that there is much unlocked potential for advanced static analysis techniques beyond linting, such as those that check for inter-procedural and other deeper bugs. In particular, compositional program analysis is an area that would benefit from further development, both in academics and industry.</p>
+
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>
+	
+	</div><!-- .entry-content -->
+
+
+</article><!-- #post-## -->
+
+<footer class="entry-footer">
+
+	<div>TAGS: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/backend/" rel="tag">Backend</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/cpp/" rel="tag">C++</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/java/" rel="tag">Java</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/opensource/" rel="tag">Open Source</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/testing/" rel="tag">Testing</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/tooling/" rel="tag">Tooling</a></div>
+</footer><!-- .entry-footer -->
+
+<iframe src="https://www.facebook.com/plugins/like.php?href=https://engineering.fb.com/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/&width=450&layout=standard&action=like&size=small&show_faces=false&share=true&height=35&appId=250208035192" width="450" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+
+					
+	 <!-- include the carousel nav here. -->
+
+		
+				
+<div class="comments-area" id="comments">
+
+	
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/android/finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer/#respond" style="display:none;">Cancel reply</a></small></h3><p class="must-log-in">You must be <a href="https://engineering.fb.com/wp-login.php?redirect_to=https%3A%2F%2Fengineering.fb.com%2Fandroid%2Ffinding-inter-procedural-bugs-at-scale-with-infer-static-analyzer%2F">logged in</a> to post a comment.</p>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+			
+		</main><!-- #main -->
+
+	</div><!-- #primary -->
+
+		<!-- Do the right sidebar check. -->
+	
+
+
+  
+<div class="col-md-4 widget-area" id="right-sidebar" role="complementary">
+	<aside id="fb_related_post_widget-4" class="widget widget_fb_related_post_widget"><h3 class="widget-title">Related Posts</h3><hr>
+            <div class="aside-related-projects"><div class="article-grid-redesign">
+              <article class="post-7429 post type-post status-publish has-post-thumbnail hentry" id="post-7429">
+								<a href="https://engineering.fb.com/android/open-sourcing-racerd-fast-static-race-detection-at-scale/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2017/10/faststaticracingatscale.png?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2017/10/faststaticracingatscale.png?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2017/10/faststaticracingatscale.png?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="Oct 19, 2017">Oct 19, 2017</time></span>
+										<h4 class="entry-title">Open-sourcing RacerD: Fast static race detection at scale</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div><div class="article-grid-redesign">
+              <article class="post-10705 post type-post status-publish has-post-thumbnail hentry" id="post-10705">
+								<a href="https://engineering.fb.com/developer-tools/getafix-how-facebook-tools-learn-to-fix-bugs-automatically/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2018/11/Getafix_animation_7.gif?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2018/11/Getafix_animation_7.gif?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2018/11/Getafix_animation_7.gif?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="Nov 06, 2018">Nov 06, 2018</time></span>
+										<h4 class="entry-title">Getafix: How Facebook tools learn to fix bugs automatically</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div><div class="article-grid-redesign">
+              <article class="post-12375 post type-post status-publish has-post-thumbnail hentry" id="post-12375">
+								<a href="https://engineering.fb.com/developer-tools/infer-team-award/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2019/02/POPL.jpg?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2019/02/POPL.jpg?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2019/02/POPL.jpg?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="Feb 08, 2019">Feb 08, 2019</time></span>
+										<h4 class="entry-title">Team behind Infer wins POPL 2019 Most Influential Paper Award</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div></div></aside><aside id="wpb_widget-3" class="widget widget_wpb_widget"><h3 class="widget-title">Related Positions</h3><hr><ul class="available-positions-list"><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pr0fUAA>
+                      		<div class="job-description">
+                      			Instagram Software Engineer, Android
+                      		</div>
+                      		<div class="job-location">
+                      			NEW YORK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pr0mUAA>
+                      		<div class="job-description">
+                      			Software Engineer, Android
+                      		</div>
+                      		<div class="job-location">
+                      			NEW YORK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K0000033XbXUAU>
+                      		<div class="job-description">
+                      			Instagram - Android Software Engineer
+                      		</div>
+                      		<div class="job-location">
+                      			SAN FRANCISCO, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K0000033XbSUAU>
+                      		<div class="job-description">
+                      			Instagram - Android UI Engineer
+                      		</div>
+                      		<div class="job-location">
+                      			SAN FRANCISCO, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001rU7ZUAU>
+                      		<div class="job-description">
+                      			Android Software Frameworks Engineer, Portal
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li></ul>
+		<a href="https://www.facebook.com/careers/">
+			<button class="btn available-positions-btn">
+				See All Jobs
+			</button>
+		</a></aside>
+</div><!-- #secondary -->
+
+
+
+	<!-- <php get_template_part('content-single-side-bar'); ?> -->
+
+	<!-- Do the right sidebar check. -->
+	
+</div><!-- Container end -->
+
+</div><!-- Wrapper end -->
+
+
+
+	<!-- ******************* The Footer Full-width Widget Area ******************* -->
+
+	<div class="wrapper wrapper-community">
+
+
+		<div class="community" tabindex="-1">
+
+			<h3 class="community-title">Join Our Engineering Community</h3>
+
+			<div class="row">
+				<!-- community section is generated through WordPress widget -->
+				<div id="wpb_widget-2" class="footer-widget widget_wpb_widget widget-count-3 col-md-4"><h3 class="widget-title">Available Positions</h3><hr><ul class="available-positions-list"><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pr0fUAA>
+                      		<div class="job-description">
+                      			Instagram Software Engineer, Android
+                      		</div>
+                      		<div class="job-location">
+                      			NEW YORK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pr0mUAA>
+                      		<div class="job-description">
+                      			Software Engineer, Android
+                      		</div>
+                      		<div class="job-location">
+                      			NEW YORK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K0000033XbXUAU>
+                      		<div class="job-description">
+                      			Instagram - Android Software Engineer
+                      		</div>
+                      		<div class="job-location">
+                      			SAN FRANCISCO, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K0000033XbSUAU>
+                      		<div class="job-description">
+                      			Instagram - Android UI Engineer
+                      		</div>
+                      		<div class="job-location">
+                      			SAN FRANCISCO, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001rU7ZUAU>
+                      		<div class="job-description">
+                      			Android Software Frameworks Engineer, Portal
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li></ul>
+		<a href="https://www.facebook.com/careers/">
+			<button class="btn available-positions-btn">
+				See All Jobs
+			</button>
+		</a></div><!-- .footer-widget --><div id="custom_html-2" class="widget_text footer-widget widget_custom_html widget-count-3 col-md-4"><h3 class="widget-title">Stay Connected</h3><div class="textwidget custom-html-widget"><ul class="stay-connected-lists">
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/facebook-engineering.png"  alt="footer-fb-engineering">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Engineering	
+			</div>
+			<a href="https://www.facebook.com/Engineering/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/fbopensource.png" alt="footer-fbopensource">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				@fbOpenSource
+			</div>
+			<a onclick='return twitterFollow("fbOpenSource")'>
+			<button class="btn stay-connected-btn">
+				Follow
+				</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left facebook-research" src="/wp-content/themes/code-fb-com/img/facebook-research.png" alt="footer-research">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Research
+			</div>
+			<a href="https://research.fb.com/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left facebook-developers" src="/wp-content/themes/code-fb-com/img/facebook-developers.png" alt="footer-developers">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Developers
+			</div>
+			<a href="https://developers.facebook.com/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/rss.png" alt="footer-rss">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				RSS
+			</div>
+			<a href="https://code.facebook.com/posts/rss/">
+			<button class="btn stay-connected-btn">
+				Subscribe
+			</button>
+			</a>
+		</div>
+	</li>
+</ul></div></div><!-- .footer-widget --><div id="custom_html-3" class="widget_text footer-widget widget_custom_html widget-count-3 col-md-4"><h3 class="widget-title">Open Source</h3><div class="textwidget custom-html-widget"><p class="opensource-desc">
+	Facebook believes in building community through open source technology. Explore our latest projects in Artificial Intelligence, Data Infrastructure, Development Tools, Front End, Languages, Platforms, Security, Virtual Reality, and more.
+</p>
+<ul class="opensource-cats">
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/android.png" alt="android">
+		<div class="opensource-cap">
+			ANDROID
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/ios.png" alt="ios">
+		<div class="opensource-cap">
+			iOS
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/web.png" alt="web">
+		<div class="opensource-cap">		
+			WEB
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/backend.png" alt="backend">
+		<div class="opensource-cap">
+			BACKEND
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/hardware.png" alt="hardware">
+		<div class="opensource-cap">
+			HARDWARE
+		</div>
+	</li>
+</ul>
+
+<button class="btn opensource-btn" onclick="window.location.href='https://opensource.fb.com/'">
+	Learn More
+</button>
+
+</div></div><!-- .footer-widget -->
+			</div>
+
+		</div>
+
+	</div><!-- #wrapper-footer-full -->
+
+
+<!-- <php get_sidebar( 'footerfull' ); ?> -->
+
+<div class="wrapper-footer" id="wrapper-footer">
+
+	<div class="footer">
+
+		<div class="row">
+
+			<div class="col-md-12">
+
+				<footer class="site-footer" id="colophon">
+
+					<div class="site-info row justify-content-between">
+
+						<div class="col-md-4 copyright-container">
+							<div class="copyright"> Facebook © 2019 </div>
+						</div>
+
+						<!-- static footer -->
+						<div class="col-md-5 footer-links-container">
+							<ul class="footer-links">
+		<li class="footer-link"><a href="https://www.facebook.com/facebook">About</a></li><li class="footer-link"><a href="https://www.facebook.com/careers">Careers</a></li><li class="footer-link"><a href="https://www.facebook.com/about/privacy">Privacy</a></li><li class="footer-link"><a href="https://www.facebook.com/help/cookies">Cookies</a></li><li class="footer-link"><a href="https://www.facebook.com/policies">Terms</a></li><li class="footer-link"><a href="https://www.facebook.com/help">Help</a></li>							</ul>
+						</div>
+
+					</div><!-- .site-info -->
+
+				</footer><!-- #colophon -->
+
+			</div><!--col end -->
+
+		</div><!-- row end -->
+
+	</div><!-- container end -->
+
+</div><!-- wrapper end -->
+
+</div><!-- #page we need this extra closing tag here -->
+
+  <div class="gdprconsent-container" id="GDPRConsentBar">
+    <div class="gdprconsent-wrapper">
+      <div class="gdprconsent-content">
+        <p>To help personalize content, tailor and measure ads, and provide a safer experience, we use cookies. By clicking or navigating the site, you agree to allow our collection of information on and off Facebook through cookies. Learn more, including about available controls: <a href="https://www.facebook.com/policies/cookies/">Cookies Policy</a></p>
+      </div>
+    </div>
+  </div>
+  	<div style="display:none">
+	</div>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201938'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var loadmore_params = {"restfulURL":"https:\/\/engineering.fb.com\/wp-json\/fb\/v1\/loadmore","searchText":"","posts":"{\"page\":0,\"name\":\"finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer\",\"category_name\":\"android\",\"error\":\"\",\"m\":\"\",\"p\":0,\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"static\":\"\",\"pagename\":\"\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"year\":0,\"w\":0,\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":false,\"update_post_term_cache\":true,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":12,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"0"};
+var search_params = {"ajaxurl":"https:\/\/engineering.fb.com\/wp-admin\/admin-ajax.php","posts":"{\"page\":0,\"name\":\"finding-inter-procedural-bugs-at-scale-with-infer-static-analyzer\",\"category_name\":\"android\",\"error\":\"\",\"m\":\"\",\"p\":0,\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"static\":\"\",\"pagename\":\"\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"year\":0,\"w\":0,\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":false,\"update_post_term_cache\":true,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":12,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"0"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://engineering.fb.com/_static/??/wp-content/themes/code-fb-com/js/child-theme.min.js,/wp-includes/js/wp-embed.min.js?m=1567638704j'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201938.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.7.1',blog:'147945108',post:'7421',tz:'-7',srv:'engineering.fb.com'} ]);
+	_stq.push([ 'clickTrackerInit', '147945108', '7421' ]);
+</script>
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"949ceaf672","applicationID":"75923885","transactionName":"MQZWYhAFXhdYAUBfWwhMdVUWDV8KFhFdWFMKBg==","queueTime":0,"applicationTime":172,"atts":"HUFBFFgfTUgbAxYMTxse","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+
+</html>

@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1130.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="Facebook Engineering - Facebook Engineering Blog">
+	<meta property="fb:app_id" content="1425766027653270" />
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://engineering.fb.com/xmlrpc.php">
+	<title>Managing resources for large-scale testing - Facebook Engineering</title>
+
+<!-- This site is optimized with the Yoast SEO Premium plugin v11.1.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://engineering.fb.com/android/managing-resources-for-large-scale-testing/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Managing resources for large-scale testing - Facebook Engineering" />
+<meta property="og:description" content="[...]Read More..." />
+<meta property="og:url" content="https://engineering.fb.com/android/managing-resources-for-large-scale-testing/" />
+<meta property="og:site_name" content="Facebook Engineering" />
+<meta property="article:tag" content="Backend" />
+<meta property="article:tag" content="Performance" />
+<meta property="article:tag" content="Testing" />
+<meta property="article:tag" content="Tooling" />
+<meta property="article:section" content="Android" />
+<meta property="article:published_time" content="2017-05-24T09:00:00+00:00" />
+<meta property="article:modified_time" content="2018-06-28T19:34:16+00:00" />
+<meta property="og:updated_time" content="2018-06-28T19:34:16+00:00" />
+<meta property="og:image" content="https://engineering.fb.com/wp-content/uploads/2017/05/gjh8fwg5ctcolwkgaaaaaab1jpgfbj0jaaab.jpg" />
+<meta property="og:image:secure_url" content="https://engineering.fb.com/wp-content/uploads/2017/05/gjh8fwg5ctcolwkgaaaaaab1jpgfbj0jaaab.jpg" />
+<meta property="og:image:width" content="736" />
+<meta property="og:image:height" content="414" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="[...]Read More..." />
+<meta name="twitter:title" content="Managing resources for large-scale testing - Facebook Engineering" />
+<meta name="twitter:image" content="https://engineering.fb.com/wp-content/uploads/2017/05/gjh8fwg5ctcolwkgaaaaaab1jpgfbj0jaaab.jpg" />
+<script type='application/ld+json' class='yoast-schema-graph yoast-schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://engineering.fb.com/#organization","name":"Facebook","url":"https://engineering.fb.com/","sameAs":[],"logo":{"@type":"ImageObject","@id":"https://engineering.fb.com/#logo","url":"https://engineering.fb.com/wp-content/uploads/2019/08/facebook-logo-2019.png","width":512,"height":512,"caption":"Facebook"},"image":{"@id":"https://engineering.fb.com/#logo"}},{"@type":"WebSite","@id":"https://engineering.fb.com/#website","url":"https://engineering.fb.com/","name":"Facebook Engineering","publisher":{"@id":"https://engineering.fb.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://engineering.fb.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://engineering.fb.com/android/managing-resources-for-large-scale-testing/#webpage","url":"https://engineering.fb.com/android/managing-resources-for-large-scale-testing/","inLanguage":"en-US","name":"Managing resources for large-scale testing - Facebook Engineering","isPartOf":{"@id":"https://engineering.fb.com/#website"},"image":{"@type":"ImageObject","@id":"https://engineering.fb.com/android/managing-resources-for-large-scale-testing/#primaryimage","url":"https://engineering.fb.com/wp-content/uploads/2017/05/gjh8fwg5ctcolwkgaaaaaab1jpgfbj0jaaab.jpg","width":736,"height":414},"primaryImageOfPage":{"@id":"https://engineering.fb.com/android/managing-resources-for-large-scale-testing/#primaryimage"},"datePublished":"2017-05-24T09:00:00+00:00","dateModified":"2018-06-28T19:34:16+00:00"},{"@type":"Article","@id":"https://engineering.fb.com/android/managing-resources-for-large-scale-testing/#article","isPartOf":{"@id":"https://engineering.fb.com/android/managing-resources-for-large-scale-testing/#webpage"},"author":{"@id":"https://engineering.fb.com/author/import_user/#author","name":"Import User"},"publisher":{"@id":"https://engineering.fb.com/#organization"},"headline":"Managing resources for large-scale testing","datePublished":"2017-05-24T09:00:00+00:00","dateModified":"2018-06-28T19:34:16+00:00","commentCount":0,"mainEntityOfPage":"https://engineering.fb.com/android/managing-resources-for-large-scale-testing/#webpage","image":{"@id":"https://engineering.fb.com/android/managing-resources-for-large-scale-testing/#primaryimage"},"keywords":"Backend,Performance,Testing,Tooling","articleSection":"Android,Developer Tools,iOS,Web"},{"@type":"Person","@id":"https://engineering.fb.com/author/import_user/#author","name":"Import User","image":{"@type":"ImageObject","@id":"https://engineering.fb.com/#personlogo","url":"https://secure.gravatar.com/avatar/72ac2cae61c6f5d875057e36b0cbc2e8?s=96&d=mm&r=g","caption":"Import User"},"sameAs":[]}]}</script>
+<!-- / Yoast SEO Premium plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//use.typekit.net' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Feed" href="https://engineering.fb.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Comments Feed" href="https://engineering.fb.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Managing resources for large-scale testing Comments Feed" href="https://engineering.fb.com/android/managing-resources-for-large-scale-testing/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/engineering.fb.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.3"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0' href='https://engineering.fb.com/_static/??-eJxlzUsSwiAMgOELSdMufC0cz0IhttjwGBLG6e2FjnWhSz6S/PBKysQgGAR8UYnK5ALDEyVps4CPthAyZCQtaFWKLD+vzjAfoJ5xwVCxdbgCWMcCI0WzKHJj1nkFlpWw8y58N/bwXq002ZSbc3PNjDXX7EN/qzKjb8loUT3Gyn7Lm9mRVdvnXrz723A8Xa790J+Pb46/W7M=' type='text/css' media='all' />
+<link rel='stylesheet' id='typekit-freight-sans-css'  href='https://use.typekit.net/mnd1swv.css?ver=0.5.1.3' type='text/css' media='all' />
+<link rel='stylesheet' id='all-css-2' href='https://engineering.fb.com/wp-content/mu-plugins/jetpack/css/jetpack.css?m=1565295902g' type='text/css' media='all' />
+<script type='text/javascript' src='https://engineering.fb.com/_static/??/wp-content/plugins/wp-gdpr-consent/assets/gdprconsent.js,/wp-content/themes/understrap/js/popper.min.js?m=1557612570j'></script>
+<link rel='https://api.w.org/' href='https://engineering.fb.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://engineering.fb.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://engineering.fb.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.2.3" />
+<link rel='shortlink' href='https://wp.me/pa0Lhq-20R' />
+<link rel="alternate" type="application/json+oembed" href="https://engineering.fb.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fengineering.fb.com%2Fandroid%2Fmanaging-resources-for-large-scale-testing%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://engineering.fb.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fengineering.fb.com%2Fandroid%2Fmanaging-resources-for-large-scale-testing%2F&#038;format=xml" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'/>
+<style type='text/css'>img#wpstats{display:none}</style>
+	<link rel="shortcut icon" href="https://engineering.fb.com/wp-content/themes/code-fb-com/favicon.ico" />
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-44373548-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-44373548-1');
+	</script>
+	<!-- Facebook Pixel Code -->
+	<script>
+	!function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f.fbq)f.fbq=n;n.push=n;n.loaded=!0;n.version='2..0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window,document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '1277352439085100');
+	fbq('track', 'PageView');
+	</script>
+
+	<noscript>
+	<img height="1" width="1" src="https://www.facebook.com/tr?id=1277352439085100&ev=PageView &noscript=1"/>
+	</noscript>
+	<!-- End Facebook Pixel Code -->
+</head>
+
+<body class="post-template-default single single-post postid-7741 single-format-standard group-blog">
+
+<div class="hfeed site" id="page">
+
+<!-- ******************* The Navbar Area ******************* -->
+<div class="wrapper-fluid wrapper-navbar" id="wrapper-navbar">
+	<a class="skip-link screen-reader-text sr-only" href="#content">
+	Skip to content	</a>
+
+	<nav class="navbar navbar-expand-std">
+
+			<div class="nav-container">
+	
+
+				<!-- Your site title as branding in the menu -->
+
+	<div class="nav-top-row">
+	
+		<h1 class="navbar-brand mb-0">
+			<a rel="home" href="https://engineering.fb.com/" title="Facebook Engineering">
+				<img class="navbar-brand-logo" src="https://engineering.fb.com/wp-content/themes/code-fb-com/img/fb-engineering-logo.svg" class="navbar-brand-logo" alt="Facebook Engineering">
+			</a>
+		</h1>
+
+	<!-- end custom logo -->
+
+				<input type="text" name="search" class="form-control-lg navbar-search" autocomplete="off">
+
+				<button class="navbar-toggler navbar-searchbar-toggler"
+						type="button"
+						data-toggle="collapse"
+						data-target="#searchbarDropdown"
+						aria-controls="searchbarDropdown"
+						aria-expanded="false"
+						aria-label="Toggle navigation">
+					<img src="https://engineering.fb.com/wp-content/themes/code-fb-com/img/search-icon.png"  class="navbar-mobile-search-icon"/>
+				</button>
+
+				<!-- desktop language menu (mobile language menu is implemented via jQuery)-->
+				<div class="notranslate nice-select navbar-language form-control">
+				</div>
+
+				<button class="navbar-toggler collapsed navbar-menu-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+
+			<!-- The WordPress Menu goes here -->
+	<div id="navbarNavDropdown" class="collapse navbar-collapse"><ul id="main-menu" class="navbar-nav"><li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-60 dropdown"><a title="Open Source" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Open Source <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-12330" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-12330"><a title="Open Source" href="https://engineering.fb.com/category/open-source/" class="nav-link">Open Source</a></li>
+	<li id="menu-item-12331" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-12331"><a title="Facebook Open Source" href="https://opensource.facebook.com" class="nav-link">Facebook Open Source</a></li>
+</ul>
+</li>
+<li id="menu-item-2686" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2686 dropdown"><a title="Platforms" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Platforms <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-65" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent nav-item menu-item-65"><a title="Android" href="https://engineering.fb.com/category/android/" class="nav-link">Android</a></li>
+	<li id="menu-item-66" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent nav-item menu-item-66"><a title="iOS" href="https://engineering.fb.com/category/ios/" class="nav-link">iOS</a></li>
+	<li id="menu-item-67" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent nav-item menu-item-67"><a title="Web" href="https://engineering.fb.com/category/web/" class="nav-link">Web</a></li>
+</ul>
+</li>
+<li id="menu-item-2682" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2682 dropdown"><a title="Infrastructure Systems" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Infrastructure Systems <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-218" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-218"><a title="Core Data" href="https://engineering.fb.com/category/core-data/" class="nav-link">Core Data</a></li>
+	<li id="menu-item-219" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-219"><a title="Data Infrastructure" href="https://engineering.fb.com/category/data-infrastructure/" class="nav-link">Data Infrastructure</a></li>
+	<li id="menu-item-220" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent nav-item menu-item-220"><a title="Developer Tools" href="https://engineering.fb.com/category/developer-tools/" class="nav-link">Developer Tools</a></li>
+	<li id="menu-item-226" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-226"><a title="Production Engineering" href="https://engineering.fb.com/category/production-engineering/" class="nav-link">Production Engineering</a></li>
+	<li id="menu-item-227" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-227"><a title="Security" href="https://engineering.fb.com/category/security/" class="nav-link">Security</a></li>
+</ul>
+</li>
+<li id="menu-item-2683" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2683 dropdown"><a title="Physical Infrastructure" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Physical Infrastructure <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-215" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-215"><a title="Connectivity" href="https://engineering.fb.com/category/connectivity/" class="nav-link">Connectivity</a></li>
+	<li id="menu-item-216" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-216"><a title="Data Center Engineering" href="https://engineering.fb.com/category/data-center-engineering/" class="nav-link">Data Center Engineering</a></li>
+	<li id="menu-item-217" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-217"><a title="Networking &amp; Traffic" href="https://engineering.fb.com/category/networking-traffic/" class="nav-link">Networking &#038; Traffic</a></li>
+</ul>
+</li>
+<li id="menu-item-2684" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2684 dropdown"><a title="Video Engineering &amp; AR/VR" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Video Engineering &#038; AR/VR <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-225" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-225"><a title="Video Engineering" href="https://engineering.fb.com/category/video-engineering/" class="nav-link">Video Engineering</a></li>
+	<li id="menu-item-223" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-223"><a title="Virtual Reality" href="https://engineering.fb.com/category/virtual-reality/" class="nav-link">Virtual Reality</a></li>
+	<li id="menu-item-13388" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-13388"><a title="Research Publications" href="https://research.fb.com/publications/?cat=11" class="nav-link">Research Publications</a></li>
+</ul>
+</li>
+<li id="menu-item-2685" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2685 dropdown"><a title="Artificial Intelligence" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Artificial Intelligence <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-222" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-222"><a title="ML Applications" href="https://engineering.fb.com/category/ml-applications/" class="nav-link">ML Applications</a></li>
+	<li id="menu-item-221" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-221"><a title="AI Research" href="https://engineering.fb.com/category/ai-research/" class="nav-link">AI Research</a></li>
+	<li id="menu-item-13387" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-13387"><a title="Research Publications" href="https://research.fb.com/publications/?cat=13" class="nav-link">Research Publications</a></li>
+</ul>
+</li>
+<li id="menu-item-228" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-228"><a title="Watch Videos" href="/videos" class="nav-link">Watch Videos</a></li>
+</ul></div>		</div><!-- .container -->
+	
+		<div class="search-container collapse" id="searchbarDropdown">
+			<div class="searchbar-search">
+				<div class="searchbar-container">
+
+					<div class="navbar-mobile-search-margin"></div>
+					<input type="text" name="search" placeholder="Search" class="form-control-lg navbar-mobile-search" autofocus autocomplete="off">
+					<button class="searchbar-clear">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</nav><!-- .site-navigation -->
+
+</div><!-- .wrapper-navbar end -->
+
+<div class="wrapper" id="single-wrapper">
+
+	<div class="single-container row" id="content" tabindex="-1">
+
+		<!-- Do the left sidebar check. -->
+		
+
+
+<div class="content-area" id="primary">
+		<main class="site-main" id="main">
+
+			
+				
+<article class="post-7741 post type-post status-publish format-standard has-post-thumbnail hentry category-android category-developer-tools category-ios category-web tag-backend tag-performance tag-testing tag-tooling" id="post-7741">
+
+	<header class="entry-header">
+		<div class="entry-meta">
+
+			POSTED ON
+
+	<span class="posted-on"><time class="entry-date published" datetime="MAY 24, 2017">MAY 24, 2017</time></span>
+			TO
+
+			<!-- category -->
+	<span class="cat-links"><a href="https://engineering.fb.com/category/android/" rel="category tag">Android</a>, <a href="https://engineering.fb.com/category/developer-tools/" rel="category tag">Developer Tools</a>, <a href="https://engineering.fb.com/category/ios/" rel="category tag">iOS</a>, <a href="https://engineering.fb.com/category/web/" rel="category tag">Web</a></span>
+	<h1 class="entry-title"><div>Managing resources for large-scale testing</div></h1>		</div><!-- .entry-meta -->
+
+	</header><!-- .entry-header -->
+
+			<div id="post-feat-image-container">
+			<img src="https://engineering.fb.com/wp-content/uploads/2017/05/gjh8fwg5ctcolwkgaaaaaab1jpgfbj0jaaab.jpg" class="wp-post-image">		</div>
+		
+	<div class="entry-authors-social">
+	  <div class="entry-authors">
+		<div class="entry-author">Jeffrey Dunn</div><div class="entry-author">Alexander Mols</div><div class="entry-author">Lawrence Lomax</div><div class="entry-author">Phyllipe Medeiros</div>		</div>
+		<div class="entry-social">
+			<div class="entry-facebook">
+				<a href="#" onclick="return fbShare()">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+				</a>
+			</div>
+			<div class="entry-twitter">
+				<a href="#" onclick="return twitterSharePopup('https://engineering.fb.com/android/managing-resources-for-large-scale-testing/')">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+				</a>
+			</div>
+		</div>
+	</div>
+
+			<div class="entry-paragraph">
+								</div>
+	
+	<div class="entry-content">
+
+	<p>As more people across the world connect on Facebook, we want to make sure our apps and services work well in a variety of scenarios. At Facebook&#8217;s scale, this means testing hundreds of important interactions across numerous types of devices and operating systems for both correctness and speed before we ship new code.</p>
+<p>Last year, we introduced the <a href="https://engineering.fb.com/posts/300815046928882/the-mobile-device-lab-at-the-prineville-data-center/">Facebook mobile device lab</a>, which lets engineers run tests by accessing thousands of mobile devices available in our data centers. Since then, we&#8217;ve built a new, unified resource management system, codenamed One World, to host these devices and other runtimes such as web browsers and emulators. Engineers at Facebook can use a single API to communicate with these remote resources within their tests and other automated systems. One World has grown to manage tens of thousands of resources and is used to execute more than 1 million jobs each day. At this scale, we have learned a lot, as we encountered unique challenges building a system that can deal with the complexities of device reliability while exposing an easy-to-use API.</p>
+<h2>Architecture</h2>
+<p>In One World, we aim to support any application that an engineer might want to use with a remote runtime and minimal modifications to their code or environment. This means supporting standard communication mechanisms like adb (Android Debug Bridge) and providing the illusion that remote devices are connected locally. Our system consists of four main components:</p>
+<ul>
+<li><strong>Runtime worker service: </strong>Each resource type has its own runtime worker service that runs on machines managing the resource. The worker service manages the life cycle of the resource and responds to requests from clients to use its resources.</li>
+<li><strong>One World daemon: </strong>This lightweight service runs on machines that will connect to remote resources. The service implements the protocol to communicate with workers and sets up the environment to allow local processes to communicate with remote resources.</li>
+<li><strong>Scheduler: </strong>We use Jupiter, a job-scheduling service at Facebook, to match clients with workers whose available resources match their specified requirements.</li>
+<li><strong>Satellite: </strong>This minimal deployment of the worker service allows engineers to connect local resources to the global One World deployment.</li>
+</ul>
+<p><img class="aligncenter size-full" data-src="https://engineering.fb.com/wp-content/uploads/2017/05/GJh8FwG5cTcOlWkGAAAAAAB1JpgFbj0JAAAB.jpg" width="736" height="414" /></p>
+<h3>Runtime worker service</h3>
+<p>Each resource hosted in One World has a worker service with the following responsibilities:</p>
+<ul>
+<li><strong>Resource configuration and setup: </strong>Before receiving a job, most resources require some sort of initial setup. For mobile devices, this may include unlocking the device, disabling the lock screen, and configuring other system settings. For browsers, it may include starting a selenium stand-alone server to allow it to be controlled remotely.</li>
+<li><strong>Health checks: </strong>Physical devices fail after prolonged use, and devices in our labs receive much more use than the average personal device. Worker services have a series of checks that they run to make sure devices are in a healthy state before allowing a client to access them. Some health checks may require technicians to repair or remove the device, and others may be resolved in an automated fashion such as charging a device due to a low battery.</li>
+<li><strong>Restoring state: </strong>After a resource has been used, we need to prepare it for the next client. For resources such as emulators, simulators, and browsers, this can be a trivial process like rebooting from an image. Mobile devices present some unique challenges, as a complete reimage is time intensive and adds wear to internal flash storage. To restore to a known good state, worker services will take actions such as rebooting a device to reset most kernel settings, uninstalling applications, and wiping data partitions.</li>
+</ul>
+<p>Within the worker service, these steps are expressed as a state machine. Each state has monitoring and logging so we can understand bottlenecks in the system and failure rates by step. An example state machine might take the following form:</p>
+<p><img class="aligncenter size-full" data-src="https://engineering.fb.com/wp-content/uploads/2017/05/GFzXGwFlzlSHWEkGAAAAAABXiEY4bj0JAAAB.jpg" width="736" height="414" /></p>
+<p>In this state machine example, the green steps indicate points where the worker interacts with the client. Tasks like configuration/setup and health checks can occur before a client even connects to a worker. These steps can take several minutes, so running them in advance allows for minimal latency when a client connects — often, our connection latency is as low as just a couple of seconds. Workers can take actions in response to the client request before handing the resource over for use. For example, if a resource is in a distant data center, installing applications on a device may be much faster if run locally on the host machine rather than over the network. After a client disconnects, the worker can attach additional metadata to the session that can be queried later. We use this to store logs (e.g., device logcat) and videos of sessions. By allowing the worker to add metadata asynchronously, the client does not have to wait for uploads to finish.</p>
+<p>Worker services are written in Python 3, which lets us run them on a variety of platforms including Linux, Mac OS, and Windows. A separate instance of the service is started for each managed resource. We attempt to isolate these service instances from each other on platforms that support it. On Linux, for example, this means launching each service in its own control group that has been configured to provide access only to the resource it controls.</p>
+<h3>Remote access to mobile test devices</h3>
+<p>On Android, we want to support the full set of existing tools on One World, meaning that normal calls to adb must work within our system. Otherwise, every tool used at Facebook would need to be modified to be aware of One World, which would quickly spin out of control. One World runs adb servers on device hosts and provides the illusion of a local adb instance by establishing TCP tunnels. For example, we can create a TCP tunnel on port 5037, the standard adb port, and forward all traffic to the device host&#8217;s adb instance. To support adb forward/reverse, we deploy a thin wrapper around the adb binary, which understands these commands and creates tunnels with two hops — first to the device host, then to the device itself.</p>
+<p>While the Android development environment has adb for interacting with an Android emulator or device, much of the tooling for iOS development is part of Xcode. As OneWorld runs iOS runtimes remotely, we needed a similar mechanism for remote interactions so that those runtimes could be used for running applications and different kinds of tests.</p>
+<p>In 2015, we open-sourced <a href="https://github.com/facebook/FBSimulatorControl">FBSimulatorControl</a>, a project for controlling iOS simulators. We have since extended this project to allow for interfacing with devices, allowing us to accommodate many of the applications that we have at Facebook. Features of FBSimulatorControl include:</p>
+<ul>
+<li><strong>Structured output for automation:</strong> FBSimulatorControl reports on the status of devices and simulators in a machine-readable format suitable for interactions such as booting simulators and launching applications.</li>
+<li><strong>Application management:</strong> The most common automation scenarios on iOS include the installation and launching of our iOS applications. FBSimulatorControl provides a consistent interface for this across simulators and devices, removing the complexity from the One World worker service.</li>
+<li><strong>Automation of the user interface:</strong> iOS engineers may be familiar with the XCUITest framework for writing automated UI tests. At Facebook, we&#8217;ve built on top of this framework in our <a href="https://github.com/facebook/WebDriverAgent">WebDriverAgent</a> project, a WebDriver server that runs on iOS. This allows us to automate the user interface of our iOS applications from another machine without running additional software on the worker. Our end-to-end tests apply this to execute on a separate machine from runtime hosts, bringing big performance wins for test runtimes when parallelized.</li>
+<li><strong>Remote invocation:</strong> When reviewing the results of automated tests, additional diagnostic data can be useful. FBSimulatorControl provides APIs for collecting videos and logs from iOS simulators and devices that can then be accessed by clients.</li>
+</ul>
+<h3>One World daemon</h3>
+<p>Rather than talk directly to the worker service, clients instead connect to a local daemon that handles the negotiation and environment setup. In this protocol, a client begins by creating a new session with the daemon. The session contains a specification of the type of runtime the client requires and the number of concurrent runtimes it needs. For example, when running a large test suite, a client may request a session for 20 concurrent Android emulators. The daemon prepares the requested resources by reserving a worker service instance and performing runtime-specific preparation steps. For Android sessions, this means setting up the appropriate TCP tunnels to listen on localhost and proxy the traffic to the adb daemon on the remote machine.</p>
+<p>As the client requires access to each reserved resource within its session, it will request a “lease” from the daemon. The daemon will respond with connection details or inform the client if the resource is not yet available. These connection details include information like the local ports to use for adb and FBSimulatorControl. After a client has finished using the resource, it releases it by calling in to the daemon again. At this point, the daemon then either frees the resource entirely to be used by a different client, or retains it to be reused within the same session if possible.</p>
+<p>Throughout the session, the workers and daemon communicate as part of the aforementioned state machine model. Once a worker becomes reserved through the scheduling service, it connects to the corresponding daemon to service the job. During the session, the daemon and worker will perform liveness checks, as either of them might die unexpectedly. Once the client has completed its session, the daemon sends a message to the worker to advance to the “restore state” part of its state machine.</p>
+<h3>Satellite mode</h3>
+<p>While having access to managed remote resources allows clients to scale, sometimes engineers want to use the same tools on local devices to debug an issue. We offer a “satellite service” that allows engineers to connect a local resource to the One World cloud. This means the phone on your desk can be shared with any other engineer and used by all of Facebook&#8217;s automation by just running a simple command. Like the worker services, the satellite service establishes a series of SSH tunnels from a local machine to One World to connect to the rest of the infrastructure. Targeting a satellite device instead of a managed device requires no code changes, and the satellite service sets up all required networking paths and publishes the resource&#8217;s availability.</p>
+<h2>Using One World</h2>
+<p>The One World daemon described above takes care of the heavy lifting of connecting to the service. We provide simple libraries to handle common patterns of communication with the daemon to enable engineers to easily integrate with One World. The code snippet below demonstrates the Python API for running an adb command on a One World device. It starts the One World daemon, and then <code>OneWorldADB</code> establishes a session and blocks until a device is available. A Python <a href="https://docs.python.org/3/reference/datamodel.html#context-managers">context manager</a> takes care of tearing everything down once the engineer&#8217;s code has finished.</p>
+<pre>
+<code class="language-clike">
+with OneWorldDaemon() as daemon, OneWorldADB(
+    daemon,
+    consumer='demo',
+    capabilities={'device-group': 'nexus-6'},
+) as adb:
+    adb.run('logcat')
+</code>
+</pre>
+<p>Using multiple concurrent resources is also supported. The One World daemon manages these concurrent resources and, via the API, engineers implement their own system-specific functionality. In the example below, 10 emulators are used to run 100 jobs — the next job will be run as soon as a new emulator becomes available. The results variable at the end will contain 100 results returned by the <code>run_custom_test</code> method.</p>
+<pre>
+<code class="language-clike">
+with OneWorldAndroidADB(daemon, num_emulators=10) as android:
+    futures = [
+       asyncio.ensure_future(
+           android.run_with_emulator(run_custom_test)
+       ) for _ in range(100)
+    ]
+    results = await asyncio.gather(*futures)
+</code>
+</pre>
+<p>Ad hoc usage is supported through the CLI:</p>
+<p><img class="aligncenter size-full" data-src="https://engineering.fb.com/wp-content/uploads/2017/05/GL5gFwEkvVfsbpcEAAAAAACs4fxLbj0JAAAC.gif" width="800" height="608" /></p>
+<h2>Applications</h2>
+<p>Beyond providing an environment for the ad hoc use of resources, One World supports numerous infrastructure projects at Facebook, including:</p>
+<ul>
+<li><strong>End-to-end and integration testing: </strong>On every code change to our apps, we run a large suite of tests to avoid introducing new bugs in our codebase. At Facebook&#8217;s scale, thousands of code changes are made each day, resulting in hundreds of thousands of test runs. One World allows us to run these tests on emulators, simulators, and devices at this scale and provides quick feedback on results as engineers write code.</li>
+<li><strong><a href="https://engineering.fb.com/posts/924676474230092/mobile-performance-tooling-infrastructure-at-facebook/">CT-Scan</a>: </strong>Beyond finding bugs, we also carefully test our apps for performance regressions to make sure our apps run smoothly on a large variety of devices. One World provides access to the devices representative of those owned by people who use Facebook, and it allows CT-Scan to focus on testing performance rather than managing devices.</li>
+<li><strong><a href="https://www.facebook.com/academics/photos/a.535022156549196.1073741825.144433258941423/1326609704057100/">Sapienz</a>: </strong>A multi-objective end-to-end testing system, Sapienz automatically generates test sequences using search-based software engineering to find crashes using the shortest path it can find. The Sapienz team can focus on the crash-finding algorithms while letting One World manage the emulators it uses.</li>
+</ul>
+<p>We have many important applications for One World today, but we expect our future work to greatly expand how we use One World in our engineering workflow. We&#8217;re working on some exciting new features, including:</p>
+<ul>
+<li><strong>Live streaming: </strong>Engineers often want to reproduce bugs that are platform-specific. Sometimes having just a remote interface like adb isn&#8217;t enough — you may want to scroll through News Feed, write comments, or tap the Like button. We&#8217;re building a live streaming service that will allow engineers to interact with devices in our lab from within a web browser. This means they will be able to debug an issue on an obscure model of phone at the click of a button, all while sitting at their desk.</li>
+<li><strong>Remote profiling: </strong>The same code can have very different performance on different devices due to varying OS versions, hardware differences, and more. We&#8217;re working on building a service that allows engineers to submit code and retrieve detailed profiler data across many devices simultaneously to understand how these factors impact their code&#8217;s performance.</li>
+</ul>
+
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>
+	
+	</div><!-- .entry-content -->
+
+
+</article><!-- #post-## -->
+
+<footer class="entry-footer">
+
+	<div>TAGS: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/backend/" rel="tag">Backend</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/performance/" rel="tag">Performance</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/testing/" rel="tag">Testing</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/tooling/" rel="tag">Tooling</a></div>
+</footer><!-- .entry-footer -->
+
+<iframe src="https://www.facebook.com/plugins/like.php?href=https://engineering.fb.com/android/managing-resources-for-large-scale-testing/&width=450&layout=standard&action=like&size=small&show_faces=false&share=true&height=35&appId=250208035192" width="450" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+
+					
+	 <!-- include the carousel nav here. -->
+
+		
+				
+<div class="comments-area" id="comments">
+
+	
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/android/managing-resources-for-large-scale-testing/#respond" style="display:none;">Cancel reply</a></small></h3><p class="must-log-in">You must be <a href="https://engineering.fb.com/wp-login.php?redirect_to=https%3A%2F%2Fengineering.fb.com%2Fandroid%2Fmanaging-resources-for-large-scale-testing%2F">logged in</a> to post a comment.</p>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+			
+		</main><!-- #main -->
+
+	</div><!-- #primary -->
+
+		<!-- Do the right sidebar check. -->
+	
+
+
+  
+<div class="col-md-4 widget-area" id="right-sidebar" role="complementary">
+	<aside id="fb_related_post_widget-4" class="widget widget_fb_related_post_widget"><h3 class="widget-title">Related Posts</h3><hr>
+            <div class="aside-related-projects"><div class="article-grid-redesign">
+              <article class="post-7438 post type-post status-publish has-post-thumbnail hentry" id="post-7438">
+								<a href="https://engineering.fb.com/android/2017-year-in-review-software-across-the-stack/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2017/12/gptuzwfqb41f01ggaaaaaacdvc1gbj0jaaab.jpg?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2017/12/gptuzwfqb41f01ggaaaaaacdvc1gbj0jaaab.jpg?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2017/12/gptuzwfqb41f01ggaaaaaacdvc1gbj0jaaab.jpg?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="Dec 14, 2017">Dec 14, 2017</time></span>
+										<h4 class="entry-title">2017 Year in review: Software across the stack</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div><div class="article-grid-redesign">
+              <article class="post-8235 post type-post status-publish has-post-thumbnail hentry" id="post-8235">
+								<a href="https://engineering.fb.com/developer-tools/sapienz-intelligent-automated-software-testing-at-scale/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2018/05/new_sapienz_hero1.jpg?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2018/05/new_sapienz_hero1.jpg?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2018/05/new_sapienz_hero1.jpg?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="May 02, 2018">May 02, 2018</time></span>
+										<h4 class="entry-title">Sapienz: Intelligent automated software testing at scale</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div><div class="article-grid-redesign">
+              <article class="post-10485 post type-post status-publish has-post-thumbnail hentry" id="post-10485">
+								<a href="https://engineering.fb.com/android/mobilelab/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2018/10/MLimg1.png?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2018/10/MLimg1.png?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2018/10/MLimg1.png?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="Oct 19, 2018">Oct 19, 2018</time></span>
+										<h4 class="entry-title">MobileLab: Highly accurate testing to prevent mobile performance regressions</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div></div></aside><aside id="wpb_widget-3" class="widget widget_wpb_widget"><h3 class="widget-title">Related Positions</h3><hr><ul class="available-positions-list"><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pr0fUAA>
+                      		<div class="job-description">
+                      			Instagram Software Engineer, Android
+                      		</div>
+                      		<div class="job-location">
+                      			NEW YORK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pr0mUAA>
+                      		<div class="job-description">
+                      			Software Engineer, Android
+                      		</div>
+                      		<div class="job-location">
+                      			NEW YORK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K0000033XbXUAU>
+                      		<div class="job-description">
+                      			Instagram - Android Software Engineer
+                      		</div>
+                      		<div class="job-location">
+                      			SAN FRANCISCO, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K0000033XbSUAU>
+                      		<div class="job-description">
+                      			Instagram - Android UI Engineer
+                      		</div>
+                      		<div class="job-location">
+                      			SAN FRANCISCO, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001rU7ZUAU>
+                      		<div class="job-description">
+                      			Android Software Frameworks Engineer, Portal
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li></ul>
+		<a href="https://www.facebook.com/careers/">
+			<button class="btn available-positions-btn">
+				See All Jobs
+			</button>
+		</a></aside>
+</div><!-- #secondary -->
+
+
+
+	<!-- <php get_template_part('content-single-side-bar'); ?> -->
+
+	<!-- Do the right sidebar check. -->
+	
+</div><!-- Container end -->
+
+</div><!-- Wrapper end -->
+
+
+
+	<!-- ******************* The Footer Full-width Widget Area ******************* -->
+
+	<div class="wrapper wrapper-community">
+
+
+		<div class="community" tabindex="-1">
+
+			<h3 class="community-title">Join Our Engineering Community</h3>
+
+			<div class="row">
+				<!-- community section is generated through WordPress widget -->
+				<div id="wpb_widget-2" class="footer-widget widget_wpb_widget widget-count-3 col-md-4"><h3 class="widget-title">Available Positions</h3><hr><ul class="available-positions-list"><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pr0fUAA>
+                      		<div class="job-description">
+                      			Instagram Software Engineer, Android
+                      		</div>
+                      		<div class="job-location">
+                      			NEW YORK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pr0mUAA>
+                      		<div class="job-description">
+                      			Software Engineer, Android
+                      		</div>
+                      		<div class="job-location">
+                      			NEW YORK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K0000033XbXUAU>
+                      		<div class="job-description">
+                      			Instagram - Android Software Engineer
+                      		</div>
+                      		<div class="job-location">
+                      			SAN FRANCISCO, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K0000033XbSUAU>
+                      		<div class="job-description">
+                      			Instagram - Android UI Engineer
+                      		</div>
+                      		<div class="job-location">
+                      			SAN FRANCISCO, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001rU7ZUAU>
+                      		<div class="job-description">
+                      			Android Software Frameworks Engineer, Portal
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li></ul>
+		<a href="https://www.facebook.com/careers/">
+			<button class="btn available-positions-btn">
+				See All Jobs
+			</button>
+		</a></div><!-- .footer-widget --><div id="custom_html-2" class="widget_text footer-widget widget_custom_html widget-count-3 col-md-4"><h3 class="widget-title">Stay Connected</h3><div class="textwidget custom-html-widget"><ul class="stay-connected-lists">
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/facebook-engineering.png"  alt="footer-fb-engineering">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Engineering	
+			</div>
+			<a href="https://www.facebook.com/Engineering/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/fbopensource.png" alt="footer-fbopensource">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				@fbOpenSource
+			</div>
+			<a onclick='return twitterFollow("fbOpenSource")'>
+			<button class="btn stay-connected-btn">
+				Follow
+				</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left facebook-research" src="/wp-content/themes/code-fb-com/img/facebook-research.png" alt="footer-research">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Research
+			</div>
+			<a href="https://research.fb.com/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left facebook-developers" src="/wp-content/themes/code-fb-com/img/facebook-developers.png" alt="footer-developers">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Developers
+			</div>
+			<a href="https://developers.facebook.com/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/rss.png" alt="footer-rss">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				RSS
+			</div>
+			<a href="https://code.facebook.com/posts/rss/">
+			<button class="btn stay-connected-btn">
+				Subscribe
+			</button>
+			</a>
+		</div>
+	</li>
+</ul></div></div><!-- .footer-widget --><div id="custom_html-3" class="widget_text footer-widget widget_custom_html widget-count-3 col-md-4"><h3 class="widget-title">Open Source</h3><div class="textwidget custom-html-widget"><p class="opensource-desc">
+	Facebook believes in building community through open source technology. Explore our latest projects in Artificial Intelligence, Data Infrastructure, Development Tools, Front End, Languages, Platforms, Security, Virtual Reality, and more.
+</p>
+<ul class="opensource-cats">
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/android.png" alt="android">
+		<div class="opensource-cap">
+			ANDROID
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/ios.png" alt="ios">
+		<div class="opensource-cap">
+			iOS
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/web.png" alt="web">
+		<div class="opensource-cap">		
+			WEB
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/backend.png" alt="backend">
+		<div class="opensource-cap">
+			BACKEND
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/hardware.png" alt="hardware">
+		<div class="opensource-cap">
+			HARDWARE
+		</div>
+	</li>
+</ul>
+
+<button class="btn opensource-btn" onclick="window.location.href='https://opensource.fb.com/'">
+	Learn More
+</button>
+
+</div></div><!-- .footer-widget -->
+			</div>
+
+		</div>
+
+	</div><!-- #wrapper-footer-full -->
+
+
+<!-- <php get_sidebar( 'footerfull' ); ?> -->
+
+<div class="wrapper-footer" id="wrapper-footer">
+
+	<div class="footer">
+
+		<div class="row">
+
+			<div class="col-md-12">
+
+				<footer class="site-footer" id="colophon">
+
+					<div class="site-info row justify-content-between">
+
+						<div class="col-md-4 copyright-container">
+							<div class="copyright"> Facebook © 2019 </div>
+						</div>
+
+						<!-- static footer -->
+						<div class="col-md-5 footer-links-container">
+							<ul class="footer-links">
+		<li class="footer-link"><a href="https://www.facebook.com/facebook">About</a></li><li class="footer-link"><a href="https://www.facebook.com/careers">Careers</a></li><li class="footer-link"><a href="https://www.facebook.com/about/privacy">Privacy</a></li><li class="footer-link"><a href="https://www.facebook.com/help/cookies">Cookies</a></li><li class="footer-link"><a href="https://www.facebook.com/policies">Terms</a></li><li class="footer-link"><a href="https://www.facebook.com/help">Help</a></li>							</ul>
+						</div>
+
+					</div><!-- .site-info -->
+
+				</footer><!-- #colophon -->
+
+			</div><!--col end -->
+
+		</div><!-- row end -->
+
+	</div><!-- container end -->
+
+</div><!-- wrapper end -->
+
+</div><!-- #page we need this extra closing tag here -->
+
+  <div class="gdprconsent-container" id="GDPRConsentBar">
+    <div class="gdprconsent-wrapper">
+      <div class="gdprconsent-content">
+        <p>To help personalize content, tailor and measure ads, and provide a safer experience, we use cookies. By clicking or navigating the site, you agree to allow our collection of information on and off Facebook through cookies. Learn more, including about available controls: <a href="https://www.facebook.com/policies/cookies/">Cookies Policy</a></p>
+      </div>
+    </div>
+  </div>
+  	<div style="display:none">
+	</div>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201938'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var loadmore_params = {"restfulURL":"https:\/\/engineering.fb.com\/wp-json\/fb\/v1\/loadmore","searchText":"","posts":"{\"page\":0,\"name\":\"managing-resources-for-large-scale-testing\",\"category_name\":\"android\",\"error\":\"\",\"m\":\"\",\"p\":0,\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"static\":\"\",\"pagename\":\"\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"year\":0,\"w\":0,\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":false,\"update_post_term_cache\":true,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":12,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"0"};
+var search_params = {"ajaxurl":"https:\/\/engineering.fb.com\/wp-admin\/admin-ajax.php","posts":"{\"page\":0,\"name\":\"managing-resources-for-large-scale-testing\",\"category_name\":\"android\",\"error\":\"\",\"m\":\"\",\"p\":0,\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"static\":\"\",\"pagename\":\"\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"year\":0,\"w\":0,\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":false,\"update_post_term_cache\":true,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":12,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"0"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://engineering.fb.com/_static/??/wp-content/themes/code-fb-com/js/child-theme.min.js,/wp-includes/js/wp-embed.min.js?m=1567638704j'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201938.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.7.1',blog:'147945108',post:'7741',tz:'-7',srv:'engineering.fb.com'} ]);
+	_stq.push([ 'clickTrackerInit', '147945108', '7741' ]);
+</script>
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"949ceaf672","applicationID":"75923885","transactionName":"MQZWYhAFXhdYAUBfWwhMdVUWDV8KFhFdWFMKBg==","queueTime":0,"applicationTime":162,"atts":"HUFBFFgfTUgbAxYMTxse","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+
+</html>

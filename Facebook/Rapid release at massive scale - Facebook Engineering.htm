@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="Facebook Engineering - Facebook Engineering Blog">
+	<meta property="fb:app_id" content="1425766027653270" />
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://engineering.fb.com/xmlrpc.php">
+	<title>Rapid release at massive scale - Facebook Engineering</title>
+
+<!-- This site is optimized with the Yoast SEO Premium plugin v11.1.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://engineering.fb.com/web/rapid-release-at-massive-scale/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Rapid release at massive scale - Facebook Engineering" />
+<meta property="og:description" content="[...]Read More..." />
+<meta property="og:url" content="https://engineering.fb.com/web/rapid-release-at-massive-scale/" />
+<meta property="og:site_name" content="Facebook Engineering" />
+<meta property="article:tag" content="@Scale" />
+<meta property="article:tag" content="Backend" />
+<meta property="article:tag" content="Infra" />
+<meta property="article:tag" content="Tooling" />
+<meta property="article:section" content="Developer Tools" />
+<meta property="article:published_time" content="2017-08-31T17:00:01+00:00" />
+<meta property="article:modified_time" content="2019-01-03T12:30:33+00:00" />
+<meta property="og:updated_time" content="2019-01-03T12:30:33+00:00" />
+<meta property="og:image" content="https://engineering.fb.com/wp-content/uploads/2017/08/continuous-intergration2.jpg" />
+<meta property="og:image:secure_url" content="https://engineering.fb.com/wp-content/uploads/2017/08/continuous-intergration2.jpg" />
+<meta property="og:image:width" content="711" />
+<meta property="og:image:height" content="400" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="[...]Read More..." />
+<meta name="twitter:title" content="Rapid release at massive scale - Facebook Engineering" />
+<meta name="twitter:image" content="https://engineering.fb.com/wp-content/uploads/2017/08/continuous-intergration2.jpg" />
+<script type='application/ld+json' class='yoast-schema-graph yoast-schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://engineering.fb.com/#organization","name":"Facebook","url":"https://engineering.fb.com/","sameAs":[],"logo":{"@type":"ImageObject","@id":"https://engineering.fb.com/#logo","url":"https://engineering.fb.com/wp-content/uploads/2019/08/facebook-logo-2019.png","width":512,"height":512,"caption":"Facebook"},"image":{"@id":"https://engineering.fb.com/#logo"}},{"@type":"WebSite","@id":"https://engineering.fb.com/#website","url":"https://engineering.fb.com/","name":"Facebook Engineering","publisher":{"@id":"https://engineering.fb.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://engineering.fb.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://engineering.fb.com/web/rapid-release-at-massive-scale/#webpage","url":"https://engineering.fb.com/web/rapid-release-at-massive-scale/","inLanguage":"en-US","name":"Rapid release at massive scale - Facebook Engineering","isPartOf":{"@id":"https://engineering.fb.com/#website"},"image":{"@type":"ImageObject","@id":"https://engineering.fb.com/web/rapid-release-at-massive-scale/#primaryimage","url":"https://engineering.fb.com/wp-content/uploads/2017/08/continuous-intergration2.jpg","width":711,"height":400,"caption":"Continuous Integration"},"primaryImageOfPage":{"@id":"https://engineering.fb.com/web/rapid-release-at-massive-scale/#primaryimage"},"datePublished":"2017-08-31T17:00:01+00:00","dateModified":"2019-01-03T12:30:33+00:00"},{"@type":"Article","@id":"https://engineering.fb.com/web/rapid-release-at-massive-scale/#article","isPartOf":{"@id":"https://engineering.fb.com/web/rapid-release-at-massive-scale/#webpage"},"author":{"@id":"https://engineering.fb.com/author/import_user/#author","name":"Import User"},"publisher":{"@id":"https://engineering.fb.com/#organization"},"headline":"Rapid release at massive scale","datePublished":"2017-08-31T17:00:01+00:00","dateModified":"2019-01-03T12:30:33+00:00","commentCount":0,"mainEntityOfPage":"https://engineering.fb.com/web/rapid-release-at-massive-scale/#webpage","image":{"@id":"https://engineering.fb.com/web/rapid-release-at-massive-scale/#primaryimage"},"keywords":"@Scale,Backend,Infra,Tooling","articleSection":"Developer Tools,Web"},{"@type":"Person","@id":"https://engineering.fb.com/author/import_user/#author","name":"Import User","image":{"@type":"ImageObject","@id":"https://engineering.fb.com/#personlogo","url":"https://secure.gravatar.com/avatar/72ac2cae61c6f5d875057e36b0cbc2e8?s=96&d=mm&r=g","caption":"Import User"},"sameAs":[]}]}</script>
+<!-- / Yoast SEO Premium plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//use.typekit.net' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Feed" href="https://engineering.fb.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Comments Feed" href="https://engineering.fb.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Facebook Engineering &raquo; Rapid release at massive scale Comments Feed" href="https://engineering.fb.com/web/rapid-release-at-massive-scale/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/engineering.fb.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.3"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0' href='https://engineering.fb.com/_static/??-eJxlzUsSwiAMgOELSdMufC0cz0IhttjwGBLG6e2FjnWhSz6S/PBKysQgGAR8UYnK5ALDEyVps4CPthAyZCQtaFWKLD+vzjAfoJ5xwVCxdbgCWMcCI0WzKHJj1nkFlpWw8y58N/bwXq002ZSbc3PNjDXX7EN/qzKjb8loUT3Gyn7Lm9mRVdvnXrz723A8Xa790J+Pb46/W7M=' type='text/css' media='all' />
+<link rel='stylesheet' id='typekit-freight-sans-css'  href='https://use.typekit.net/mnd1swv.css?ver=0.5.1.3' type='text/css' media='all' />
+<link rel='stylesheet' id='all-css-2' href='https://engineering.fb.com/wp-content/mu-plugins/jetpack/css/jetpack.css?m=1565295905g' type='text/css' media='all' />
+<script type='text/javascript' src='https://engineering.fb.com/_static/??/wp-content/plugins/wp-gdpr-consent/assets/gdprconsent.js,/wp-content/themes/understrap/js/popper.min.js?m=1563679259j'></script>
+<link rel='https://api.w.org/' href='https://engineering.fb.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://engineering.fb.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://engineering.fb.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.2.3" />
+<link rel='shortlink' href='https://wp.me/pa0Lhq-1VG' />
+<link rel="alternate" type="application/json+oembed" href="https://engineering.fb.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fengineering.fb.com%2Fweb%2Frapid-release-at-massive-scale%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://engineering.fb.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fengineering.fb.com%2Fweb%2Frapid-release-at-massive-scale%2F&#038;format=xml" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'/>
+<style type='text/css'>img#wpstats{display:none}</style>
+	<link rel="shortcut icon" href="https://engineering.fb.com/wp-content/themes/code-fb-com/favicon.ico" />
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-44373548-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-44373548-1');
+	</script>
+	<!-- Facebook Pixel Code -->
+	<script>
+	!function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f.fbq)f.fbq=n;n.push=n;n.loaded=!0;n.version='2..0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window,document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '1277352439085100');
+	fbq('track', 'PageView');
+	</script>
+
+	<noscript>
+	<img height="1" width="1" src="https://www.facebook.com/tr?id=1277352439085100&ev=PageView &noscript=1"/>
+	</noscript>
+	<!-- End Facebook Pixel Code -->
+</head>
+
+<body class="post-template-default single single-post postid-7420 single-format-standard group-blog">
+
+<div class="hfeed site" id="page">
+
+<!-- ******************* The Navbar Area ******************* -->
+<div class="wrapper-fluid wrapper-navbar" id="wrapper-navbar">
+	<a class="skip-link screen-reader-text sr-only" href="#content">
+	Skip to content	</a>
+
+	<nav class="navbar navbar-expand-std">
+
+			<div class="nav-container">
+	
+
+				<!-- Your site title as branding in the menu -->
+
+	<div class="nav-top-row">
+	
+		<h1 class="navbar-brand mb-0">
+			<a rel="home" href="https://engineering.fb.com/" title="Facebook Engineering">
+				<img class="navbar-brand-logo" src="https://engineering.fb.com/wp-content/themes/code-fb-com/img/fb-engineering-logo.svg" class="navbar-brand-logo" alt="Facebook Engineering">
+			</a>
+		</h1>
+
+	<!-- end custom logo -->
+
+				<input type="text" name="search" class="form-control-lg navbar-search" autocomplete="off">
+
+				<button class="navbar-toggler navbar-searchbar-toggler"
+						type="button"
+						data-toggle="collapse"
+						data-target="#searchbarDropdown"
+						aria-controls="searchbarDropdown"
+						aria-expanded="false"
+						aria-label="Toggle navigation">
+					<img src="https://engineering.fb.com/wp-content/themes/code-fb-com/img/search-icon.png"  class="navbar-mobile-search-icon"/>
+				</button>
+
+				<!-- desktop language menu (mobile language menu is implemented via jQuery)-->
+				<div class="notranslate nice-select navbar-language form-control">
+				</div>
+
+				<button class="navbar-toggler collapsed navbar-menu-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+
+			<!-- The WordPress Menu goes here -->
+	<div id="navbarNavDropdown" class="collapse navbar-collapse"><ul id="main-menu" class="navbar-nav"><li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-60 dropdown"><a title="Open Source" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Open Source <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-12330" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-12330"><a title="Open Source" href="https://engineering.fb.com/category/open-source/" class="nav-link">Open Source</a></li>
+	<li id="menu-item-12331" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-12331"><a title="Facebook Open Source" href="https://opensource.facebook.com" class="nav-link">Facebook Open Source</a></li>
+</ul>
+</li>
+<li id="menu-item-2686" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2686 dropdown"><a title="Platforms" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Platforms <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-65" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-65"><a title="Android" href="https://engineering.fb.com/category/android/" class="nav-link">Android</a></li>
+	<li id="menu-item-66" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-66"><a title="iOS" href="https://engineering.fb.com/category/ios/" class="nav-link">iOS</a></li>
+	<li id="menu-item-67" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent nav-item menu-item-67"><a title="Web" href="https://engineering.fb.com/category/web/" class="nav-link">Web</a></li>
+</ul>
+</li>
+<li id="menu-item-2682" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2682 dropdown"><a title="Infrastructure Systems" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Infrastructure Systems <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-218" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-218"><a title="Core Data" href="https://engineering.fb.com/category/core-data/" class="nav-link">Core Data</a></li>
+	<li id="menu-item-219" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-219"><a title="Data Infrastructure" href="https://engineering.fb.com/category/data-infrastructure/" class="nav-link">Data Infrastructure</a></li>
+	<li id="menu-item-220" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent nav-item menu-item-220"><a title="Developer Tools" href="https://engineering.fb.com/category/developer-tools/" class="nav-link">Developer Tools</a></li>
+	<li id="menu-item-226" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-226"><a title="Production Engineering" href="https://engineering.fb.com/category/production-engineering/" class="nav-link">Production Engineering</a></li>
+	<li id="menu-item-227" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-227"><a title="Security" href="https://engineering.fb.com/category/security/" class="nav-link">Security</a></li>
+</ul>
+</li>
+<li id="menu-item-2683" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2683 dropdown"><a title="Physical Infrastructure" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Physical Infrastructure <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-215" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-215"><a title="Connectivity" href="https://engineering.fb.com/category/connectivity/" class="nav-link">Connectivity</a></li>
+	<li id="menu-item-216" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-216"><a title="Data Center Engineering" href="https://engineering.fb.com/category/data-center-engineering/" class="nav-link">Data Center Engineering</a></li>
+	<li id="menu-item-217" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-217"><a title="Networking &amp; Traffic" href="https://engineering.fb.com/category/networking-traffic/" class="nav-link">Networking &#038; Traffic</a></li>
+</ul>
+</li>
+<li id="menu-item-2684" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2684 dropdown"><a title="Video Engineering &amp; AR/VR" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Video Engineering &#038; AR/VR <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-225" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-225"><a title="Video Engineering" href="https://engineering.fb.com/category/video-engineering/" class="nav-link">Video Engineering</a></li>
+	<li id="menu-item-223" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-223"><a title="Virtual Reality" href="https://engineering.fb.com/category/virtual-reality/" class="nav-link">Virtual Reality</a></li>
+	<li id="menu-item-13388" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-13388"><a title="Research Publications" href="https://research.fb.com/publications/?cat=11" class="nav-link">Research Publications</a></li>
+</ul>
+</li>
+<li id="menu-item-2685" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children nav-item menu-item-2685 dropdown"><a title="Artificial Intelligence" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Artificial Intelligence <span class="caret"></span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="12px" height="15px">
+							<polyline points="40 50 80 90 120 50" stroke="#adb1b8" stroke-width="10" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+						  </svg></a>
+<ul class=" dropdown-menu" role="menu">
+	<li id="menu-item-222" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-222"><a title="ML Applications" href="https://engineering.fb.com/category/ml-applications/" class="nav-link">ML Applications</a></li>
+	<li id="menu-item-221" class="menu-item menu-item-type-taxonomy menu-item-object-category nav-item menu-item-221"><a title="AI Research" href="https://engineering.fb.com/category/ai-research/" class="nav-link">AI Research</a></li>
+	<li id="menu-item-13387" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-13387"><a title="Research Publications" href="https://research.fb.com/publications/?cat=13" class="nav-link">Research Publications</a></li>
+</ul>
+</li>
+<li id="menu-item-228" class="menu-item menu-item-type-custom menu-item-object-custom nav-item menu-item-228"><a title="Watch Videos" href="/videos" class="nav-link">Watch Videos</a></li>
+</ul></div>		</div><!-- .container -->
+	
+		<div class="search-container collapse" id="searchbarDropdown">
+			<div class="searchbar-search">
+				<div class="searchbar-container">
+
+					<div class="navbar-mobile-search-margin"></div>
+					<input type="text" name="search" placeholder="Search" class="form-control-lg navbar-mobile-search" autofocus autocomplete="off">
+					<button class="searchbar-clear">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</nav><!-- .site-navigation -->
+
+</div><!-- .wrapper-navbar end -->
+
+<div class="wrapper" id="single-wrapper">
+
+	<div class="single-container row" id="content" tabindex="-1">
+
+		<!-- Do the left sidebar check. -->
+		
+
+
+<div class="content-area" id="primary">
+		<main class="site-main" id="main">
+
+			
+				
+<article class="post-7420 post type-post status-publish format-standard has-post-thumbnail hentry category-developer-tools category-web tag-atscale tag-backend tag-infra tag-tooling" id="post-7420">
+
+	<header class="entry-header">
+		<div class="entry-meta">
+
+			POSTED ON
+
+	<span class="posted-on"><time class="entry-date published" datetime="AUG 31, 2017">AUG 31, 2017</time></span>
+			TO
+
+			<!-- category -->
+	<span class="cat-links"><a href="https://engineering.fb.com/category/developer-tools/" rel="category tag">Developer Tools</a>, <a href="https://engineering.fb.com/category/web/" rel="category tag">Web</a></span>
+	<h1 class="entry-title"><div>Rapid release at massive scale</div></h1>		</div><!-- .entry-meta -->
+
+	</header><!-- .entry-header -->
+
+			<div id="post-feat-image-container">
+			<img src="https://engineering.fb.com/wp-content/uploads/2017/08/continuous-intergration1.jpg" class="wp-post-image">		</div>
+		
+	<div class="entry-authors-social">
+	  <div class="entry-authors">
+		<div class="entry-author">Chuck Rossi</div>		</div>
+		<div class="entry-social">
+			<div class="entry-facebook">
+				<a href="#" onclick="return fbShare()">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+				</a>
+			</div>
+			<div class="entry-twitter">
+				<a href="#" onclick="return twitterSharePopup('https://engineering.fb.com/web/rapid-release-at-massive-scale/')">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+				</a>
+			</div>
+		</div>
+	</div>
+
+			<div class="entry-paragraph">
+								</div>
+	
+	<div class="entry-content">
+
+	<p>Over time, the software industry has come up with several ways to deliver code faster, safer, and with better quality. Many of these efforts center on ideas such as continuous integration, continuous delivery, agile development, DevOps, and test-driven development. All these methodologies have one common goal: to enable developers to get their code out quickly and correctly to the people who use it, in safe, small, incremental steps.</p>
+<p>The development and deployment processes at Facebook have grown organically to encompass many parts of these rapid iteration techniques without rigidly adhering to any one in particular. This flexible, pragmatic approach has allowed us to release our web and mobile products successfully on rapid schedules.</p>
+<p>For many years, we pushed the Facebook front end three times a day using a simple master and release branch strategy. Engineers would request cherry-picks — changes to the code that had passed a series of automated tests — to pull from the master branch into one of the daily pushes from the release branch. In general, we saw between 500 and 700 cherry-picks per day. Once a week, we’d cut a new release branch that picked up any changes that were not cherry-picked during the week.</p>
+<p><img class="aligncenter size-full" data-src="https://engineering.fb.com/wp-content/uploads/2017/08/GF0oPwHBDYx4GjgBAAAAAAAQG0oVbj0JAAAB.jpg" width="736" height="414" /></p>
+<p>This system scaled well, starting with a handful of engineers in 2007 to thousands today. The good news is that as we added more engineers, we got more done — the <a href="https://research.fb.com/publications/continuous-deployment-at-facebook-and-oanda/">rate of code delivery scaled</a> with the size of the team. But it took a certain amount of human effort in the form of release engineers, in addition to the tools and automated systems in place, to drive the daily and weekly pushes out the door. We understood that batching up larger and larger chunks of code for delivery would not continue to scale as the team kept growing.</p>
+<p>By 2016, we saw that the branch/cherry-pick model was reaching its limit. We were ingesting more than 1,000 diffs a day to the master branch, and the weekly push was sometimes as many as 10,000 diffs. The amount of manual effort needed to coordinate and deliver such a large release every week was not sustainable.</p>
+<p>We decided to move <a href="http://facebook.com/">facebook.com</a> to a quasi-continuous “push from master” system in April 2016. Over the next year, we gradually rolled it out, first to 50 percent of employees, then from 0.1 percent to 1 percent to 10 percent of production web traffic. Each of these progressions allowed us to test the ability of our tools and processes to handle the increased push frequency and get real-world signal. Our main goal was to make sure that the new system made people’s experience better — or at the very least, didn’t make it worse. After almost exactly a year of planning and development, over the course of three days in April 2017 we enabled 100 percent of our production web servers to run code deployed directly from master.</p>
+<h2>Continuous delivery at scale</h2>
+<p>While a true continuous push system would deliver every individual change to production soon after it landed, the code velocity at Facebook required us to develop a system that pushes tens to hundreds of diffs every few hours. The changes that get made in this quasi-continuous delivery mode are generally small and incremental, and very few will have a visible effect on the actual user experience. Each release is rolled out to 100 percent of production in a tiered fashion over a few hours, so we can stop the push if we find any problems.</p>
+<p><img class="aligncenter size-full" data-src="https://engineering.fb.com/wp-content/uploads/2017/12/GIYNPgGn5SctXdIGAAAAAAAkALkybj0JAAAB.jpg" width="736" height="414" /></p>
+<p>First, diffs that have passed a series of automated internal tests and land in master are pushed out to Facebook employees. In this stage, we get push-blocking alerts if we’ve introduced a regression, and an emergency stop button lets us keep the release from going any further. If everything is OK, we push the changes to 2 percent of production, where again we collect signal and monitor alerts, especially for edge cases that our testing or employee dogfooding may not have picked up. Finally, we roll out to 100 percent of production, where our Flytrap tool aggregates user reports and alerts us to any anomalies.</p>
+<p>Many of the changes are initially kept behind our Gatekeeper system, which allows us to roll out mobile and web code releases independently from new features, helping to lower the risk of any particular update causing a problem. If we do find a problem, we can simply switch the gatekeeper off rather than revert back to a previous version or fix forward.</p>
+<p>This quasi-continuous release cycle comes with several advantages:</p>
+<p><strong>It eliminates the need for hotfixes.</strong> In the three-push-a-day system, if a critical change had to get out and it wasn’t during one of the scheduled push times, someone had to call for a hotfix. These out-of-band pushes were disruptive because they usually needed some human action and could bump into the next scheduled push. With the new system, the vast majority of things that would have required a hotfix can simply be committed to master and pushed in the next release.</p>
+<p><strong>It allows better support for a global engineering team.</strong> We tried to schedule the three daily pushes to accommodate our engineering offices around the world, but even with that effort the weekly push required all engineers to pay attention at a specific date and time that was not always convenient in their time zone. The new quasi-continuous system means all engineers everywhere in the world can develop and deliver their code when it makes sense for them.</p>
+<p><strong>It provides a forcing function to develop the next generation of tools, automation, and processes necessary to allow the company to scale.</strong> When we take on projects like this, it works as a pressure test across many teams and systems. We made improvements to our push tools, our diff review tools, our testing infrastructure, our capacity management system, our traffic routing systems, and many other areas. These teams all came together because they wanted to see the main project of a faster push cycle succeed. The improvements we made will help ensure the company is ready for future growth.</p>
+<p><strong>It makes the user experience better, faster.</strong> When it takes days or weeks to see how code will behave, engineers may have already moved on to something new. With continuous delivery, engineers don’t have to wait a week or longer to get feedback about a change they made. They can learn more quickly what doesn’t work, and deliver small enhancements as soon as they are ready instead of waiting for the next big release. From an infrastructure perspective, this new system puts us in a much better position to react to rare events that might impact people. Ultimately, this brings engineers closer to users and improves both product development and product reliability.</p>
+<h2>Bringing continuous delivery to mobile</h2>
+<p>Evolving to a quasi-continuous system on the web was possible in part because we own the entire stack and could build or improve the tools we needed to make it a reality. Shipping on mobile platforms presents more of a challenge, as many of the current development and deployment tools available for mobile make rapid iteration difficult.</p>
+<p>Facebook has worked to make this better by building and open-sourcing a wide set of tools that focus specifically on rapid mobile development, including <a href="https://nuclide.io/">Nuclide</a>, <a href="https://buckbuild.com/">Buck</a>, <a href="https://github.com/phacility/phabricator">Phabricator</a>, a variety of iOS libraries, <a href="https://facebook.github.io/react-native/">React Native</a>, and <a href="http://fbinfer.com/">Infer</a>. Together, this build and test stack gives us the ability to produce quality code that’s ready for rapid deployment to mobile platforms.</p>
+<p>Our continuous integration stack is broken down into three layers: builds, static analysis, and testing.</p>
+<p><img class="aligncenter size-full" data-src="https://engineering.fb.com/wp-content/uploads/2017/08/GCwoPwH2OwiJGfwGAAAAAAD_s_x5bj0JAAAB.jpg" width="736" height="414" /></p>
+<p>Whenever code is committed from a developer branch into our mobile master branches, it first is built across all products the code could affect. For mobile, this means building Facebook, Messenger, Pages Manager, Instagram, and other apps on every commit. We also build several flavors of each product to ensure we’ve covered all the chip architectures and simulators those products support.</p>
+<p>While the builds are going, we run linters and our static analysis tool, Infer. These will help catch null pointer exceptions, resource and memory leaks, unused variables, and risky system calls, and will flag Facebook coding guideline issues.</p>
+<p>The third concurrent system, mobile automated testing, includes thousands of unit tests, integration tests, and end-to-end tests driven by tools like Robolectric, XCTest, JUnit, and WebDriver.</p>
+<p>This build and test stack not only runs on every commit, but also runs multiple times during the life cycle of any code change. On Android alone, we do between 50,000 and 60,000 builds a day.</p>
+<p><img class="aligncenter size-full" data-src="https://engineering.fb.com/wp-content/uploads/2017/08/GFOkQQFUfKKF2PEAAAAAAACQDy1Pbj0JAAAB.jpg" width="736" height="414" /></p>
+<p>By applying traditional continuous delivery techniques to our mobile stack, we&#8217;ve gone from four-week releases to two-week releases to one-week releases. Today we use the same kind of branch/cherry-pick model on mobile that we previously used on web. Although we push to production only once a week, it&#8217;s still important to test the code early in real-world settings so that engineers can get quick feedback. We make mobile release candidates available every day for canary users, including 1 million or so <a href="https://play.google.com/apps/testing/com.facebook.katana">Android beta testers</a>.</p>
+<p><img class="aligncenter size-full" data-src="https://engineering.fb.com/wp-content/uploads/2017/08/GCNMQAEuyGOwD7wAAAAAAADgzcRpbj0JAAAB.jpg" width="736" height="414" /></p>
+<p>At the same time we&#8217;ve increased our release frequency, our mobile engineering teams have grown by a factor of 15, and our code delivery velocity has increased considerably. Despite this, <a href="https://research.fb.com/publications/continuous-deployment-of-mobile-software-at-facebook-showcase/">our data from 2012 to 2016 shows</a> that engineer productivity remained constant for both Android and iOS, whether measured by lines of code pushed or the number of pushes. Similarly, the number of critical issues arising from mobile releases is almost constant regardless of the number of deployments, indicating that our code quality does not suffer as we continue to scale.</p>
+<p>With so many advances in available tools and methodologies, it&#8217;s an exciting time to be working in the area of release engineering. I&#8217;m very proud of the teams at Facebook that have worked together to give us what I think is one of the most advanced web and mobile deployment systems at this scale. Part of what made this all possible is having a strong, central release engineering team that&#8217;s a first-class citizen in the infrastructure engineering space. The release team at Facebook will continue to drive initiatives that improve the release process for developers and customers, and we&#8217;ll continue to share our experiences, tools, and best practices.</p>
+
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>
+	
+	</div><!-- .entry-content -->
+
+
+</article><!-- #post-## -->
+
+<footer class="entry-footer">
+
+	<div>TAGS: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/atscale/" rel="tag">@Scale</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/backend/" rel="tag">Backend</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/infra/" rel="tag">Infra</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://engineering.fb.com/tag/tooling/" rel="tag">Tooling</a></div>
+</footer><!-- .entry-footer -->
+
+<iframe src="https://www.facebook.com/plugins/like.php?href=https://engineering.fb.com/web/rapid-release-at-massive-scale/&width=450&layout=standard&action=like&size=small&show_faces=false&share=true&height=35&appId=250208035192" width="450" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+
+					
+	 <!-- include the carousel nav here. -->
+
+		
+				
+<div class="comments-area" id="comments">
+
+	
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/web/rapid-release-at-massive-scale/#respond" style="display:none;">Cancel reply</a></small></h3><p class="must-log-in">You must be <a href="https://engineering.fb.com/wp-login.php?redirect_to=https%3A%2F%2Fengineering.fb.com%2Fweb%2Frapid-release-at-massive-scale%2F">logged in</a> to post a comment.</p>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+			
+		</main><!-- #main -->
+
+	</div><!-- #primary -->
+
+		<!-- Do the right sidebar check. -->
+	
+
+
+  
+<div class="col-md-4 widget-area" id="right-sidebar" role="complementary">
+	<aside id="fb_related_post_widget-4" class="widget widget_fb_related_post_widget"><h3 class="widget-title">Related Posts</h3><hr>
+            <div class="aside-related-projects"><div class="article-grid-redesign">
+              <article class="post-7426 post type-post status-publish has-post-thumbnail hentry" id="post-7426">
+								<a href="https://engineering.fb.com/web/react-16-a-look-inside-an-api-compatible-rewrite-of-our-frontend-ui-library/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2017/09/react_16_sized.jpg?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2017/09/react_16_sized.jpg?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2017/09/react_16_sized.jpg?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="Sep 26, 2017">Sep 26, 2017</time></span>
+										<h4 class="entry-title">React 16: A look inside an API-compatible rewrite of our frontend UI library</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div><div class="article-grid-redesign">
+              <article class="post-8237 post type-post status-publish has-post-thumbnail hentry" id="post-8237">
+								<a href="https://engineering.fb.com/ai-research/announcing-pytorch-1-0-for-both-research-and-production/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2018/05/pytorch-eng-blog_hero.png?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2018/05/pytorch-eng-blog_hero.png?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2018/05/pytorch-eng-blog_hero.png?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="May 02, 2018">May 02, 2018</time></span>
+										<h4 class="entry-title">Announcing PyTorch 1.0 for both research and production</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div><div class="article-grid-redesign">
+              <article class="post-8235 post type-post status-publish has-post-thumbnail hentry" id="post-8235">
+								<a href="https://engineering.fb.com/developer-tools/sapienz-intelligent-automated-software-testing-at-scale/" rel="bookmark">
+									<img width="580" height="326" data-src="https://engineering.fb.com/wp-content/uploads/2018/05/new_sapienz_hero1.jpg?w=580&#038;h=326&#038;crop=1" class="wp-post-image" alt="" data-srcset="https://engineering.fb.com/wp-content/uploads/2018/05/new_sapienz_hero1.jpg?w=580&#038;h=326&#038;crop=1 580w, https://engineering.fb.com/wp-content/uploads/2018/05/new_sapienz_hero1.jpg?w=580&#038;h=326&#038;crop=1 326w" sizes="(max-width: 580px) 100vw, 580px">
+									<header class="entry-header">
+										<span class="posted-on"><time class="entry-date published" datetime="May 02, 2018">May 02, 2018</time></span>
+										<h4 class="entry-title">Sapienz: Intelligent automated software testing at scale</h4>
+									</header><!-- .entry-header -->
+								</a>
+              </article><!-- #post-## -->
+              </div></div></aside><aside id="wpb_widget-3" class="widget widget_wpb_widget"><h3 class="widget-title">Related Positions</h3><hr><ul class="available-positions-list"><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pkm2UAA>
+                      		<div class="job-description">
+                      			Software Engineer, Mobile
+                      		</div>
+                      		<div class="job-location">
+                      			TEL AVIV, ISRAEL
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001ppakUAA>
+                      		<div class="job-description">
+                      			Manager, Software Engineering - FAIAR
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001ps82UAA>
+                      		<div class="job-description">
+                      			Manager, Software Engineering - Core App
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001q7gVUAQ>
+                      		<div class="job-description">
+                      			Engineering Manager - Spark
+                      		</div>
+                      		<div class="job-location">
+                      			LONDON, UNITED KINGDOM
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K000007Bxl4UAC>
+                      		<div class="job-description">
+                      			WhatsApp Integrity, Software Engineer 
+                      		</div>
+                      		<div class="job-location">
+                      			LONDON, UNITED KINGDOM
+                      		</div>
+                          </a>
+                      	</li></ul>
+		<a href="https://www.facebook.com/careers/">
+			<button class="btn available-positions-btn">
+				See All Jobs
+			</button>
+		</a></aside>
+</div><!-- #secondary -->
+
+
+
+	<!-- <php get_template_part('content-single-side-bar'); ?> -->
+
+	<!-- Do the right sidebar check. -->
+	
+</div><!-- Container end -->
+
+</div><!-- Wrapper end -->
+
+
+
+	<!-- ******************* The Footer Full-width Widget Area ******************* -->
+
+	<div class="wrapper wrapper-community">
+
+
+		<div class="community" tabindex="-1">
+
+			<h3 class="community-title">Join Our Engineering Community</h3>
+
+			<div class="row">
+				<!-- community section is generated through WordPress widget -->
+				<div id="wpb_widget-2" class="footer-widget widget_wpb_widget widget-count-3 col-md-4"><h3 class="widget-title">Available Positions</h3><hr><ul class="available-positions-list"><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001pkm2UAA>
+                      		<div class="job-description">
+                      			Software Engineer, Mobile
+                      		</div>
+                      		<div class="job-location">
+                      			TEL AVIV, ISRAEL
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001ppakUAA>
+                      		<div class="job-description">
+                      			Manager, Software Engineering - FAIAR
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001ps82UAA>
+                      		<div class="job-description">
+                      			Manager, Software Engineering - Core App
+                      		</div>
+                      		<div class="job-location">
+                      			MENLO PARK, US
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K6A000001q7gVUAQ>
+                      		<div class="job-description">
+                      			Engineering Manager - Spark
+                      		</div>
+                      		<div class="job-location">
+                      			LONDON, UNITED KINGDOM
+                      		</div>
+                          </a>
+                      	</li><li class="available-positions-item">
+                          <a href=https://www.facebook.com/careers/department?req=a1K2K000007Bxl4UAC>
+                      		<div class="job-description">
+                      			WhatsApp Integrity, Software Engineer 
+                      		</div>
+                      		<div class="job-location">
+                      			LONDON, UNITED KINGDOM
+                      		</div>
+                          </a>
+                      	</li></ul>
+		<a href="https://www.facebook.com/careers/">
+			<button class="btn available-positions-btn">
+				See All Jobs
+			</button>
+		</a></div><!-- .footer-widget --><div id="custom_html-2" class="widget_text footer-widget widget_custom_html widget-count-3 col-md-4"><h3 class="widget-title">Stay Connected</h3><div class="textwidget custom-html-widget"><ul class="stay-connected-lists">
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/facebook-engineering.png"  alt="footer-fb-engineering">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Engineering	
+			</div>
+			<a href="https://www.facebook.com/Engineering/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/fbopensource.png" alt="footer-fbopensource">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				@fbOpenSource
+			</div>
+			<a onclick='return twitterFollow("fbOpenSource")'>
+			<button class="btn stay-connected-btn">
+				Follow
+				</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left facebook-research" src="/wp-content/themes/code-fb-com/img/facebook-research.png" alt="footer-research">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Research
+			</div>
+			<a href="https://research.fb.com/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left facebook-developers" src="/wp-content/themes/code-fb-com/img/facebook-developers.png" alt="footer-developers">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				Facebook Developers
+			</div>
+			<a href="https://developers.facebook.com/">
+			<button class="btn stay-connected-btn">
+				Like
+			</button>
+			</a>
+		</div>
+	</li>
+	<li class="stay-connected-item">
+		<img class="stay-connected-item-left" src="/wp-content/themes/code-fb-com/img/rss.png" alt="footer-rss">
+		<div class="stay-connected-item-right">
+			<div class="stay-connected-label">
+				RSS
+			</div>
+			<a href="https://code.facebook.com/posts/rss/">
+			<button class="btn stay-connected-btn">
+				Subscribe
+			</button>
+			</a>
+		</div>
+	</li>
+</ul></div></div><!-- .footer-widget --><div id="custom_html-3" class="widget_text footer-widget widget_custom_html widget-count-3 col-md-4"><h3 class="widget-title">Open Source</h3><div class="textwidget custom-html-widget"><p class="opensource-desc">
+	Facebook believes in building community through open source technology. Explore our latest projects in Artificial Intelligence, Data Infrastructure, Development Tools, Front End, Languages, Platforms, Security, Virtual Reality, and more.
+</p>
+<ul class="opensource-cats">
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/android.png" alt="android">
+		<div class="opensource-cap">
+			ANDROID
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/ios.png" alt="ios">
+		<div class="opensource-cap">
+			iOS
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/web.png" alt="web">
+		<div class="opensource-cap">		
+			WEB
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/backend.png" alt="backend">
+		<div class="opensource-cap">
+			BACKEND
+		</div>
+	</li>
+	<li class="opensource-cat">
+		<img src="/wp-content/themes/code-fb-com/img/hardware.png" alt="hardware">
+		<div class="opensource-cap">
+			HARDWARE
+		</div>
+	</li>
+</ul>
+
+<button class="btn opensource-btn" onclick="window.location.href='https://opensource.fb.com/'">
+	Learn More
+</button>
+
+</div></div><!-- .footer-widget -->
+			</div>
+
+		</div>
+
+	</div><!-- #wrapper-footer-full -->
+
+
+<!-- <php get_sidebar( 'footerfull' ); ?> -->
+
+<div class="wrapper-footer" id="wrapper-footer">
+
+	<div class="footer">
+
+		<div class="row">
+
+			<div class="col-md-12">
+
+				<footer class="site-footer" id="colophon">
+
+					<div class="site-info row justify-content-between">
+
+						<div class="col-md-4 copyright-container">
+							<div class="copyright"> Facebook © 2019 </div>
+						</div>
+
+						<!-- static footer -->
+						<div class="col-md-5 footer-links-container">
+							<ul class="footer-links">
+		<li class="footer-link"><a href="https://www.facebook.com/facebook">About</a></li><li class="footer-link"><a href="https://www.facebook.com/careers">Careers</a></li><li class="footer-link"><a href="https://www.facebook.com/about/privacy">Privacy</a></li><li class="footer-link"><a href="https://www.facebook.com/help/cookies">Cookies</a></li><li class="footer-link"><a href="https://www.facebook.com/policies">Terms</a></li><li class="footer-link"><a href="https://www.facebook.com/help">Help</a></li>							</ul>
+						</div>
+
+					</div><!-- .site-info -->
+
+				</footer><!-- #colophon -->
+
+			</div><!--col end -->
+
+		</div><!-- row end -->
+
+	</div><!-- container end -->
+
+</div><!-- wrapper end -->
+
+</div><!-- #page we need this extra closing tag here -->
+
+  <div class="gdprconsent-container" id="GDPRConsentBar">
+    <div class="gdprconsent-wrapper">
+      <div class="gdprconsent-content">
+        <p>To help personalize content, tailor and measure ads, and provide a safer experience, we use cookies. By clicking or navigating the site, you agree to allow our collection of information on and off Facebook through cookies. Learn more, including about available controls: <a href="https://www.facebook.com/policies/cookies/">Cookies Policy</a></p>
+      </div>
+    </div>
+  </div>
+  	<div style="display:none">
+	</div>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201938'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var loadmore_params = {"restfulURL":"https:\/\/engineering.fb.com\/wp-json\/fb\/v1\/loadmore","searchText":"","posts":"{\"page\":0,\"name\":\"rapid-release-at-massive-scale\",\"category_name\":\"web\",\"error\":\"\",\"m\":\"\",\"p\":0,\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"static\":\"\",\"pagename\":\"\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"year\":0,\"w\":0,\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":false,\"update_post_term_cache\":true,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":12,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"0"};
+var search_params = {"ajaxurl":"https:\/\/engineering.fb.com\/wp-admin\/admin-ajax.php","posts":"{\"page\":0,\"name\":\"rapid-release-at-massive-scale\",\"category_name\":\"web\",\"error\":\"\",\"m\":\"\",\"p\":0,\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"static\":\"\",\"pagename\":\"\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"year\":0,\"w\":0,\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":false,\"update_post_term_cache\":true,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":12,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"0"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://engineering.fb.com/_static/??/wp-content/themes/code-fb-com/js/child-theme.min.js,/wp-includes/js/wp-embed.min.js?m=1567638704j'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201938.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.7.1',blog:'147945108',post:'7420',tz:'-7',srv:'engineering.fb.com'} ]);
+	_stq.push([ 'clickTrackerInit', '147945108', '7420' ]);
+</script>
+
+</body>
+
+</html>
